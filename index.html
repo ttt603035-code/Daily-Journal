@@ -1,500 +1,3252 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Study Resources</title>
-  <style>
-    /* ============================================================
-       CSS Variables — Light / Dark Mode
-       ============================================================ */
-    :root {
-      --bg-primary:        #F2F2F7;
-      --bg-secondary:      #FFFFFF;
-      --bg-tertiary:       #F2F2F7;
-      --bg-grouped:        #FFFFFF;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Daily Journal</title>
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --bg2: #FFFFFF;
+    --surface: #FFFFFF;
+    --surface2: #F5F5F7;
+    --text-primary: #1C1C1E;
+    --text-secondary: #6C6C70;
+    --text-tertiary: #8E8E93;
+    --accent: #1C1C1E;
+    --accent-soft: #F0F0F2;
+    --accent-blue: #8E8E93;
+    --pink: #F6BBCA;
+    --pink-soft: #FEF0F3;
+    --lavender: #C5B8E8;
+    --lavender-soft: #F4F0FD;
+    --mint: #A8D5C2;
+    --mint-soft: #EDF8F3;
+    --peach: #F0C8A0;
+    --peach-soft: #FDF5EC;
+    --yellow: #F0E0A0;
+    --yellow-soft: #FEFAEC;
+    --border: rgba(0,0,0,0.06);
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 0 0 0.5px rgba(0,0,0,0.03);
+    --shadow-md: 0 3px 12px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.03);
+    --shadow-lg: 0 8px 28px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.05);
+    --radius-xl: 32px;
+    --radius-lg: 24px;
+    --radius-md: 20px;
+    --radius-sm: 16px;
+    --radius-xs: 12px;
+    --radius-pill: 999px;
+    --tab-height: 62px;
+    --tab-float: 10px;
+    --system-blue: #1C1C1E;
+    --system-blue-soft: rgba(0,0,0,0.06);
+    --set-bg: #FFFFFF;
+    --set-card: #FFFFFF;
+    --set-primary: #1C1C1E;
+    --set-secondary: #6C6C70;
+    --set-value: #8E8E93;
+    --set-section: #8E8E93;
+    --set-chevron: #C6C6C8;
+    --set-divider: rgba(60,60,67,0.12);
+    --set-danger: #FF3B30;
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
 
-      --label-primary:     #000000;
-      --label-secondary:   #3C3C43CC;   /* 80% opacity */
-      --label-tertiary:    #3C3C4399;   /* 60% opacity */
-      --label-quaternary:  #3C3C4366;   /* 40% opacity */
-
-      --separator:         #C6C6C8;
-      --fill-quaternary:   #7474801E;
-
-      --tint:              #007AFF;
-      --tint-light:        #007AFF1A;
-
-      --card-shadow:       0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
-      --card-shadow-press: 0 0px 1px rgba(0,0,0,.06);
-
-      --radius-card:       13px;
-      --radius-icon:       10px;
-
-      --font: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-      --font-display: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  @media (prefers-color-scheme: dark) {
+    body[data-theme="system"], body:not([data-theme]) {
+      --bg: #000000;
+      --bg2: #000000;
+      --surface: #1C1C1E;
+      --surface2: #2C2C2E;
+      --text-primary: #F2F2F7;
+      --text-secondary: #AEAEB2;
+      --text-tertiary: #636366;
+      --accent: #FFFFFF;
+      --accent-soft: rgba(255,255,255,0.12);
+      --system-blue: #FFFFFF;
+      --system-blue-soft: rgba(255,255,255,0.12);
+      --set-bg: #000000; --set-card: #1C1C1E; --set-primary: #FFFFFF;
+      --set-secondary: #AEAEB2; --set-value: #98989F; --set-section: #98989F;
+      --set-chevron: #48484A; --set-divider: rgba(255,255,255,0.16); --set-danger: #FF453A;
+      --border: rgba(255,255,255,0.08);
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+      --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
     }
+  }
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg-primary:      #000000;
-        --bg-secondary:    #1C1C1E;
-        --bg-tertiary:     #2C2C2E;
-        --bg-grouped:      #1C1C1E;
+  body[data-theme="dark"] {
+    --bg: #000000;
+    --bg2: #000000;
+    --surface: #1C1C1E;
+    --surface2: #2C2C2E;
+    --text-primary: #F2F2F7;
+    --text-secondary: #AEAEB2;
+    --text-tertiary: #636366;
+    --accent: #FFFFFF;
+    --accent-soft: rgba(255,255,255,0.12);
+    --system-blue: #FFFFFF;
+    --system-blue-soft: rgba(255,255,255,0.12);
+    --set-bg: #000000; --set-card: #1C1C1E; --set-primary: #FFFFFF;
+    --set-secondary: #AEAEB2; --set-value: #98989F; --set-section: #98989F;
+    --set-chevron: #48484A; --set-divider: rgba(255,255,255,0.16); --set-danger: #FF453A;
+    --border: rgba(255,255,255,0.08);
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.4);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+  }
 
-        --label-primary:   #FFFFFF;
-        --label-secondary: #EBEBF599;
-        --label-tertiary:  #EBEBF54D;
-        --label-quaternary:#EBEBF52E;
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        --separator:       #38383A;
-        --fill-quaternary: #7474801E;
+  /* ─── iOS SAFARI AUTO-ZOOM FIX ─── */
+  html { -webkit-text-size-adjust: 100%; }
+  /* All text-entry controls must be ≥16px or iOS Safari zooms on focus */
+  input, textarea, select { font-size: 16px; }
 
-        --tint:            #0A84FF;
-        --tint-light:      #0A84FF1A;
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
 
-        --card-shadow:     0 1px 3px rgba(0,0,0,.4), 0 1px 2px rgba(0,0,0,.3);
-        --card-shadow-press: 0 0px 1px rgba(0,0,0,.3);
-      }
+  /* ─── APP SHELL ─── */
+  #app {
+    position: fixed; inset: 0;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+
+  .page-container {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    padding-bottom: calc(var(--tab-height) + var(--safe-bottom) + var(--tab-float) + 24px);
+  }
+
+  /* ─── BOTTOM TAB BAR (one floating rounded glass pill) ─── */
+  .tab-bar {
+    position: fixed;
+    bottom: calc(var(--safe-bottom) + var(--tab-float));
+    left: 16px; right: 16px;
+    width: auto;
+    height: var(--tab-height);
+    padding: 5px;
+    gap: 4px;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: saturate(180%) blur(24px);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    border: 0.5px solid rgba(0,0,0,0.06);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.05), inset 0 0.5px 0 rgba(255,255,255,0.9);
+    box-sizing: border-box;
+  }
+
+  body[data-theme="dark"] .tab-bar {
+    background: rgba(44,44,46,0.88);
+    border-color: rgba(255,255,255,0.08);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3), inset 0 0.5px 0 rgba(255,255,255,0.06);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    body[data-theme="system"] .tab-bar {
+      background: rgba(44,44,46,0.88);
+      border-color: rgba(255,255,255,0.08);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3), inset 0 0.5px 0 rgba(255,255,255,0.06);
     }
+  }
 
-    /* ============================================================
-       Reset & Base
-       ============================================================ */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* Pure-text tabs — no icons, no blue. Entire click region is a pill, active = faint gray capsule. */
+  .tab-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    min-width: 0;
+    transition: background 0.18s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    overflow: hidden;
+  }
 
-    html {
-      background-color: var(--bg-primary);
-      color: var(--label-primary);
-      font-family: var(--font);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-size-adjust: 100%;
-    }
+  .tab-item:active { background: rgba(0,0,0,0.05); }
+  body[data-theme="dark"] .tab-item:active { background: rgba(255,255,255,0.08); }
+  .tab-item.active { background: rgba(0,0,0,0.055); }
+  body[data-theme="dark"] .tab-item.active { background: rgba(255,255,255,0.10); }
+  @media (prefers-color-scheme: dark) {
+    body[data-theme="system"] .tab-item.active { background: rgba(255,255,255,0.10); }
+  }
 
-    body {
-      min-height: 100dvh;
-      background-color: var(--bg-primary);
-      padding-bottom: env(safe-area-inset-bottom, 0px);
-    }
+  .tab-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    color: #8E8E93;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    line-height: 1;
+  }
 
-    /* ============================================================
-       Layout
-       ============================================================ */
-    .page {
-      max-width: 680px;
+  body[data-theme="dark"] .tab-label { color: #98989F; }
+  @media (prefers-color-scheme: dark) {
+    body[data-theme="system"] .tab-label { color: #98989F; }
+  }
+
+  .tab-item.active .tab-label { color: #1C1C1E; font-weight: 600; }
+  body[data-theme="dark"] .tab-item.active .tab-label { color: #FFFFFF; }
+  @media (prefers-color-scheme: dark) {
+    body[data-theme="system"] .tab-item.active .tab-label { color: #FFFFFF; }
+  }
+
+  /* ─── PAGES ─── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ─── HOME ─── */
+  .home-header {
+    padding: 56px 20px 12px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .home-header-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .header-doodle {
+    width: 66px; height: 96px;
+    flex-shrink: 0;
+    opacity: 0.9;
+    object-fit: contain;
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .header-doodle { width: 76px; height: 112px; }
+  }
+
+  .header-greeting {
+    padding-top: 8px;
+    margin-left: 14px;
+  }
+
+  .greeting-text {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
+  }
+
+  .greeting-date {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+    font-weight: 400;
+  }
+
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 8px;
+    flex-shrink: 0;
+  }
+
+  .icon-btn {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .icon-btn:active { transform: scale(0.92); }
+  .icon-btn svg { width: 16px; height: 16px; color: var(--text-secondary); }
+
+  /* ─── JOURNAL CARDS ─── */
+  .cards-list {
+    padding: 4px 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  @media (min-width: 768px) {
+    .cards-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 800px;
       margin: 0 auto;
-      padding: 0 16px;
+      padding: 4px 24px 0;
     }
+  }
 
-    /* ============================================================
-       Header
-       ============================================================ */
-    .header {
-      padding: 56px 4px 28px;
+  .journal-card {
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    box-shadow: var(--shadow-sm);
+    border: 0.5px solid var(--border);
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .journal-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .journal-card.accent-blue::before { background: var(--accent-blue); }
+  .journal-card.accent-pink::before { background: var(--pink); }
+  .journal-card.accent-lavender::before { background: var(--lavender); }
+  .journal-card.accent-mint::before { background: var(--mint); }
+  .journal-card.accent-peach::before { background: var(--peach); }
+  .journal-card.accent-yellow::before { background: var(--yellow); }
+
+  .journal-card:active { transform: scale(0.98); box-shadow: var(--shadow-md); }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .card-date-block {}
+  .card-date { font-size: 16px; font-weight: 600; color: var(--text-primary); }
+  .card-weekday { font-size: 12px; color: var(--text-secondary); margin-top: 1px; }
+
+  .card-fav {
+    background: none; border: none; cursor: pointer;
+    color: var(--text-tertiary); font-size: 16px;
+    padding: 2px;
+    line-height: 1;
+  }
+  .card-fav.active { color: #FFB347; }
+
+  .card-subjects {
+    display: flex; flex-wrap: wrap; gap: 5px;
+    margin-bottom: 10px;
+  }
+
+  .subject-pill {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 100px;
+    background: var(--surface2);
+    color: var(--text-secondary);
+  }
+
+  .card-section-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-tertiary);
+    margin-bottom: 4px;
+  }
+
+  .card-finished-text {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Empty state */
+  .empty-state {
+    text-align: center;
+    padding: 48px 24px;
+    color: var(--text-tertiary);
+  }
+
+  .empty-doodle { margin: 0 auto 16px; opacity: 0.4; }
+  .empty-title { font-size: 15px; font-weight: 500; margin-bottom: 6px; color: var(--text-secondary); }
+  .empty-sub { font-size: 13px; color: var(--text-tertiary); line-height: 1.5; }
+
+  /* ─── NOTES PAGE ─── */
+  .notes-header {
+    padding: 56px 20px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .notes-filter {
+    padding: 0 16px 12px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .notes-filter::-webkit-scrollbar { display: none; }
+
+  .filter-pill {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 13px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-secondary);
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.15s;
+  }
+
+  .filter-pill.active {
+    background: var(--text-primary);
+    color: var(--bg);
+    border-color: transparent;
+  }
+
+  .sticky-wall {
+    padding: 8px 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  @media (min-width: 600px) {
+    .sticky-wall { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .sticky-wall { grid-template-columns: repeat(4, 1fr); max-width: 900px; margin: 0 auto; }
+  }
+
+  .sticky-note {
+    border-radius: 16px;
+    padding: 14px 14px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 0 0 0.5px rgba(0,0,0,0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+    min-height: 96px;
+  }
+
+  .sticky-note:active { transform: scale(0.96) rotate(0deg) !important; box-shadow: var(--shadow-sm); }
+
+  .sticky-note-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .sticky-note-meta {
+    margin-top: 10px;
+    font-size: 10px;
+    color: var(--text-tertiary);
+  }
+
+  .sticky-note-type {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    opacity: 0.7;
+  }
+
+  /* ─── CALENDAR PAGE ─── */
+  .calendar-header {
+    padding: 52px 24px 12px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .cal-nav-btn {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: transparent;
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+  }
+  .cal-nav-btn:active { background: var(--surface2); }
+  .cal-nav-btn svg { width: 18px; height: 18px; color: var(--text-secondary); }
+
+  .cal-month-year {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+  }
+
+  .cal-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 0 20px;
+    margin-bottom: 2px;
+  }
+
+  .cal-weekday {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-tertiary);
+    padding: 6px 0 8px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 0 20px;
+    gap: 1px;
+  }
+
+  .cal-day {
+    aspect-ratio: 1 / 1.15;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 8px;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-primary);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.15s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .cal-day-num {
+    line-height: 1;
+  }
+
+  .cal-day.empty { cursor: default; }
+  .cal-day.other-month { color: var(--text-tertiary); opacity: 0.35; }
+
+  /* Today: black pill — fully rounded number */
+  .cal-day.today .cal-day-num {
+    background: var(--text-primary);
+    color: #fff;
+    border-radius: var(--radius-pill);
+    padding: 4px 9px;
+    margin: -4px -9px;
+    font-weight: 600;
+  }
+
+  /* Selected: small rounded gray area wrapping only the number + cloud, with even top/bottom slack.
+     The whole cell keeps its original size — only the visual selection background is compact. */
+  .cal-day.selected::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 46px;
+    border-radius: 16px;
+    background: rgba(0,0,0,0.055);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .cal-day.selected .cal-day-num,
+  .cal-day.selected .cal-cloud { position: relative; z-index: 1; }
+  .cal-day.today.selected .cal-day-num {
+    background: var(--text-primary);
+  }
+
+  .cal-day:not(.empty):not(.other-month):active {
+    background: var(--surface2);
+  }
+
+  /* Cloud doodle for dates with journal entries — small hand-drawn cloud, warm dark gray, clearly visible */
+  .cal-cloud {
+    margin-top: 4px;
+    width: 16px;
+    height: 12px;
+    opacity: 0.9;
+    color: #5F5A54;
+  }
+
+  body[data-theme="dark"] .cal-cloud { color: #8E8E93; opacity: 0.85; }
+  @media (prefers-color-scheme: dark) {
+    body[data-theme="system"] .cal-cloud { color: #8E8E93; opacity: 0.85; }
+  }
+
+  .cal-detail {
+    margin: 12px 20px 0;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow-sm);
+    border: 0.5px solid var(--border);
+    min-height: 80px;
+    text-align: center;
+  }
+
+  .cal-detail-date {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+  }
+
+  .cal-no-journal {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+
+  .cal-no-journal p { font-size: 14px; color: var(--text-secondary); }
+  .cal-no-journal small { font-size: 12px; color: var(--text-tertiary); }
+
+  .view-journal-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 9px 22px;
+    border-radius: 100px;
+    background: var(--text-primary);
+    color: var(--bg);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.15s;
+  }
+  .view-journal-btn:active { opacity: 0.7; }
+
+  /* ─── SETTINGS PAGE — black/white Apple Settings style ─── */
+  #page-settings {
+    --set-bg: #FFFFFF;
+    --set-card: #FFFFFF;
+    --set-primary: #1C1C1E;
+    --set-secondary: #6C6C70;
+    --set-value: #8E8E93;
+    --set-section: #8E8E93;
+    --set-chevron: #C6C6C8;
+    --set-divider: rgba(60,60,67,0.12);
+    --set-danger: #FF3B30;
+    background: var(--set-bg);
+    min-height: 100%;
+    padding-bottom: 40px;
+  }
+  body[data-theme="dark"] #page-settings { --set-bg: #000000; --set-card: #1C1C1E; --set-primary: #FFFFFF;
+      --set-secondary: #AEAEB2; --set-value: #98989F; --set-section: #98989F;
+      --set-chevron: #48484A; --set-divider: rgba(255,255,255,0.16); --set-danger: #FF453A; }
+  @media (prefers-color-scheme: dark) {
+    body[data-theme="system"] #page-settings { --set-bg: #000000; --set-card: #1C1C1E; --set-primary: #FFFFFF;
+      --set-secondary: #AEAEB2; --set-value: #98989F; --set-section: #98989F;
+      --set-chevron: #48484A; --set-divider: rgba(255,255,255,0.16); --set-danger: #FF453A; }
+  }
+
+  .settings-header {
+    padding: 56px 20px 16px;
+  }
+
+  .settings-section {
+    margin: 0 0 24px;
+  }
+
+  .settings-section-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: var(--set-section);
+    margin: 0 20px 6px;
+  }
+
+  .settings-group {
+    background: var(--set-card);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin: 0 16px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.03), 0 0 0 0.5px rgba(0,0,0,0.02);
+  }
+
+  .settings-row {
+    display: flex;
+    align-items: center;
+    min-height: 52px;
+    padding: 8px 18px;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.12s ease;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .settings-row:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 16px; right: 0;
+    height: 0.5px;
+    background: var(--set-divider);
+  }
+
+  .settings-row:active { background: rgba(0,0,0,0.04); }
+  body[data-theme="dark"] .settings-row:active { background: rgba(255,255,255,0.06); }
+
+  .settings-row-content { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+  .settings-row-label { font-size: 16px; color: var(--set-primary); line-height: 1.3; }
+  .settings-row-sub { font-size: 12px; color: var(--set-secondary); margin-top: 2px; line-height: 1.3; }
+
+  .settings-row-right {
+    display: flex; align-items: center; gap: 8px;
+    color: var(--set-value);
+    font-size: 15px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .settings-row-right svg { width: 15px; height: 15px; color: var(--set-chevron); }
+  .row-value { color: var(--set-value); font-size: 15px; }
+
+  /* Selected option checkmark — black/dark gray, never blue */
+  .check-mark { color: var(--set-primary); font-size: 17px; font-weight: 700; }
+
+  .danger-label { color: var(--set-danger) !important; }
+  .settings-row.danger .settings-row-label { color: var(--set-danger); }
+  .settings-row.danger:active { background: rgba(255,59,48,0.06); }
+  body[data-theme="dark"] .settings-row.danger:active { background: rgba(255,69,58,0.12); }
+
+  /* Chevron used across settings rows */
+  .settings-chevron { flex-shrink: 0; }
+  .settings-chevron svg { display: block; width: 15px; height: 15px; color: var(--set-chevron); }
+
+  .settings-version {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-tertiary);
+    padding: 8px;
+  }
+
+  /* ─── SEARCH OVERLAY ─── */
+  .search-overlay {
+    position: fixed; inset: 0;
+    z-index: 200;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: flex-start;
+    padding: 80px 16px 0;
+  }
+
+  .search-overlay.active { display: flex; }
+
+  .search-box {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    background: var(--surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .search-input-wrap {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 16px;
+  }
+
+  .search-input-wrap svg { width: 16px; height: 16px; color: var(--text-tertiary); flex-shrink: 0; }
+
+  .search-input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: var(--text-primary);
+    font-family: inherit;
+  }
+
+  .search-cancel {
+    background: none; border: none; cursor: pointer;
+    font-size: 14px; color: var(--accent); font-weight: 500;
+  }
+
+  .search-results {
+    max-height: 60vh;
+    overflow-y: auto;
+    border-top: 0.5px solid var(--border);
+  }
+
+  .search-result-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    border-bottom: 0.5px solid var(--border);
+    transition: background 0.1s;
+  }
+  .search-result-item:active { background: var(--surface2); }
+  .search-result-item:last-child { border-bottom: none; }
+
+  .search-result-date { font-size: 11px; color: var(--text-tertiary); margin-bottom: 3px; }
+  .search-result-text { font-size: 13px; color: var(--text-primary); line-height: 1.4; }
+
+  .search-empty { padding: 24px 16px; text-align: center; color: var(--text-tertiary); font-size: 13px; }
+
+  /* ─── JOURNAL DETAIL SHEET ─── */
+  .sheet-overlay {
+    position: fixed; inset: 0;
+    z-index: 300;
+    background: rgba(0,0,0,0.28);
+    display: none;
+    align-items: flex-end;
+  }
+
+  .sheet-overlay.active { display: flex; }
+
+  .sheet {
+    width: 100%;
+    max-height: 92vh;
+    margin: 12px 12px calc(var(--safe-bottom));
+    background: rgba(255,255,255,0.76);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    box-shadow: 0 -6px 30px rgba(0,0,0,0.12), inset 0 0.5px 0 rgba(255,255,255,0.9);
+    border: 0.5px solid rgba(255,255,255,0.55);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: slideUp 0.35s cubic-bezier(.22,1.1,.36,1) both;
+  }
+
+  body[data-theme="dark"] .sheet { background: rgba(28,28,30,0.78); border-color: rgba(255,255,255,0.1); }
+  @media (prefers-color-scheme: dark) {
+    body[data-theme="system"] .sheet { background: rgba(28,28,30,0.78); border-color: rgba(255,255,255,0.1); }
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .sheet-handle {
+    width: 36px; height: 4px;
+    background: var(--text-tertiary);
+    border-radius: 2px;
+    margin: 10px auto 0;
+    opacity: 0.3;
+    flex-shrink: 0;
+  }
+
+  .sheet-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px 8px;
+    flex-shrink: 0;
+  }
+
+  .sheet-title { font-size: 17px; font-weight: 600; color: var(--text-primary); }
+
+  .sheet-actions { display: flex; gap: 8px; }
+
+  .sheet-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 16px 32px;
+  }
+
+  /* Detail view */
+  .detail-date-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+
+  .detail-date {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .detail-subjects {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .detail-subject-pill {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 100px;
+    background: var(--surface2);
+    color: var(--text-secondary);
+  }
+
+  .detail-section {
+    margin-bottom: 20px;
+  }
+
+  .detail-section-header {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 7px;
+  }
+
+  .detail-section-icon { line-height: 1; display: inline-flex; align-items: center; }
+  .detail-section-icon .fi,
+  .fi { width: 14px; height: 14px; display: inline-block; vertical-align: middle; opacity: 0.55; color: var(--text-secondary); flex-shrink: 0; }
+
+  .detail-section-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-tertiary);
+  }
+
+  .detail-section-text {
+    font-size: 15px;
+    color: var(--text-primary);
+    line-height: 1.65;
+    white-space: pre-wrap;
+  }
+
+  .detail-section-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+
+  .detail-section-list li {
+    font-size: 15px;
+    color: var(--text-primary);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .detail-section-list li::before {
+    content: '•';
+    position: absolute; left: 0;
+    color: var(--text-tertiary);
+  }
+
+  .detail-additional {
+    margin-top: 4px;
+    padding: 12px;
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+  }
+
+  .detail-additional-item {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .detail-divider {
+    height: 0.5px;
+    background: var(--border);
+    margin: 8px 0 20px;
+  }
+
+  /* ─── NEW JOURNAL SHEET ─── */
+  .new-journal-form {
+    padding: 0 16px 32px;
+  }
+
+  .form-field {
+    margin-bottom: 16px;
+  }
+
+  .form-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-tertiary);
+    margin-bottom: 6px;
+  }
+
+  .form-label-icon { display: inline-flex; align-items: center; }
+  .form-label-icon .fi { width: 13px; height: 13px; }
+
+  .form-input, .form-textarea {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font-size: 16px;
+    color: var(--text-primary);
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.15s;
+    -webkit-appearance: none;
+  }
+
+  .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+
+  .form-textarea {
+    resize: none;
+    min-height: 70px;
+    line-height: 1.5;
+  }
+
+  .subjects-input-wrap {
+    display: flex; gap: 8px;
+    align-items: center;
+  }
+
+  .subjects-input-wrap .form-input { flex: 1; }
+
+  .add-subject-btn {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--text-primary);
+    color: var(--bg);
+    border: none; cursor: pointer;
+    font-size: 20px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .subjects-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-top: 8px;
+  }
+
+  .subject-tag {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 12px;
+    padding: 3px 8px 3px 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  .subject-tag button {
+    background: none; border: none; cursor: pointer;
+    color: var(--accent); font-size: 15px; line-height: 1;
+    padding: 0;
+    opacity: 0.7;
+  }
+
+  .save-journal-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: var(--radius-md);
+    background: var(--text-primary);
+    color: var(--bg);
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: opacity 0.15s;
+  }
+  .save-journal-btn:active { opacity: 0.7; }
+
+  /* ─── QUOTE POPUP ─── */
+  .quote-popup {
+    position: fixed;
+    top: 60px; left: 50%; transform: translateX(-50%) translateY(-200%);
+    z-index: 500;
+    width: min(320px, calc(100vw - 32px));
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 20px 22px 18px;
+    box-shadow: var(--shadow-lg);
+    border: 0.5px solid var(--border);
+    transition: transform 0.5s cubic-bezier(.22,1.1,.36,1), opacity 0.4s;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .quote-popup.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+
+  .quote-popup-deco {
+    margin-bottom: 10px;
+    display: flex; gap: 8px; align-items: center;
+    opacity: 0.5;
+    color: var(--text-secondary);
+  }
+
+  .quote-popup-text {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.55;
+    margin-bottom: 12px;
+  }
+
+  .quote-popup-heart {
+    text-align: right;
+    opacity: 0.45;
+    color: var(--text-secondary);
+  }
+
+  /* ─── NOTE DETAIL ─── */
+  .note-detail-text {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .note-detail-from {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+  }
+
+  .note-detail-from svg { width: 14px; height: 14px; color: var(--text-tertiary); }
+
+  /* ─── CONFIRM DIALOG ─── */
+  .confirm-overlay {
+    position: fixed; inset: 0;
+    z-index: 600;
+    background: rgba(0,0,0,0.4);
+    display: none; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .confirm-overlay.active { display: flex; }
+
+  .confirm-box {
+    background: var(--surface);
+    border-radius: 18px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .confirm-body { padding: 20px 20px 12px; text-align: center; }
+  .confirm-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .confirm-msg { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+  .confirm-actions {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 0.5px solid var(--border);
+  }
+
+  .confirm-btn {
+    padding: 14px;
+    background: none; border: none;
+    font-size: 15px; font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .confirm-btn:first-child { border-right: 0.5px solid var(--border); color: var(--text-secondary); }
+  .confirm-btn.danger { color: #FF453A; font-weight: 700; }
+  .confirm-btn:active { background: var(--surface2); }
+
+  /* ─── JSON SCHEMA VIEWER ─── */
+  .schema-code {
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    padding: 14px;
+    font-family: 'SF Mono', 'Menlo', monospace;
+    font-size: 11px;
+    color: var(--text-secondary);
+    white-space: pre-wrap;
+    line-height: 1.6;
+    overflow-x: auto;
+    margin: 12px 16px;
+    border: 0.5px solid var(--border);
+  }
+
+  .copy-schema-btn {
+    display: block;
+    margin: 0 16px;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    background: var(--text-primary);
+    color: var(--bg);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    width: calc(100% - 32px);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .copy-schema-btn:active { opacity: 0.7; }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed;
+    bottom: calc(var(--tab-height) + var(--safe-bottom) + var(--tab-float) + 20px);
+    left: 50%; transform: translateX(-50%) translateY(20px);
+    z-index: 700;
+    background: var(--text-primary);
+    color: var(--bg);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 100px;
+    opacity: 0;
+    transition: all 0.25s;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ─── SVG DOODLES (inline) ─── */
+  .doodle-cat-header {
+    display: block;
+  }
+
+  /* ─── iPad sidebar ─── */
+  @media (min-width: 768px) {
+    body { overflow: hidden; }
+    #app { flex-direction: row; }
+    .tab-bar {
+      display: none;
+    }
+    .sidebar {
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      width: 220px;
+      background: var(--surface);
+      border-right: 0.5px solid var(--border);
+      flex-shrink: 0;
+      padding: 48px 12px 24px;
+      gap: 4px;
     }
-
-    .header-icon {
-      font-size: 44px;
-      line-height: 1;
-      margin-bottom: 8px;
-      user-select: none;
+    .sidebar-logo {
+      font-size: 18px; font-weight: 700;
+      color: var(--text-primary);
+      padding: 8px 12px 20px;
+      display: flex; align-items: center; gap: 8px;
     }
-
-    .header-title {
-      font-family: var(--font-display);
-      font-size: 34px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: var(--label-primary);
-      line-height: 1.12;
-    }
-
-    .header-subtitle {
-      font-size: 15px;
-      font-weight: 400;
-      color: var(--label-secondary);
-      letter-spacing: -0.1px;
-      line-height: 1.4;
-    }
-
-    /* ============================================================
-       Section Label
-       ============================================================ */
-    .section-label {
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--label-tertiary);
-      padding: 0 4px;
-      margin-bottom: 8px;
-    }
-
-    /* ============================================================
-       Card List — grouped iOS style
-       ============================================================ */
-    .card-list {
-      list-style: none;
-      background: var(--bg-grouped);
-      border-radius: var(--radius-card);
-      box-shadow: var(--card-shadow);
-      overflow: hidden;
-      margin-bottom: 36px;
-    }
-
-    /* ============================================================
-       Card Item
-       ============================================================ */
-    .card {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 13px 16px;
+    .sidebar-item {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
       cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      user-select: none;
-      position: relative;
-      text-decoration: none;
-      color: inherit;
-      background: transparent;
-      border: none;
-      width: 100%;
-      text-align: left;
-      transition: background-color 0.15s ease;
-    }
-
-    /* Separator between cards (not last) */
-    .card:not(:last-child)::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: calc(16px + 44px + 14px); /* align after icon */
-      right: 0;
-      height: 0.5px;
-      background: var(--separator);
-    }
-
-    /* Hover — desktop */
-    @media (hover: hover) {
-      .card:hover {
-        background-color: var(--fill-quaternary);
-      }
-    }
-
-    /* Active / press */
-    .card:active {
-      background-color: var(--fill-quaternary);
-      transform: scale(0.99);
-      transition: transform 0.08s ease, background-color 0.08s ease;
-    }
-
-    /* Coming-soon card */
-    .card.coming-soon {
-      cursor: default;
-      opacity: 0.42;
-    }
-    .card.coming-soon:active { transform: none; }
-
-    /* ============================================================
-       Card Icon
-       ============================================================ */
-    .card-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: var(--radius-icon);
-      background: var(--tint-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      flex-shrink: 0;
-      line-height: 1;
-    }
-
-    /* ============================================================
-       Card Text
-       ============================================================ */
-    .card-text {
-      flex: 1;
-      min-width: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    .card-title {
-      font-size: 17px;
-      font-weight: 590;
-      letter-spacing: -0.2px;
-      color: var(--label-primary);
-      line-height: 1.25;
-    }
-
-    .card-subtitle {
-      font-size: 13px;
-      font-weight: 400;
-      color: var(--label-secondary);
-      letter-spacing: -0.05px;
-      line-height: 1.3;
-    }
-
-    /* ============================================================
-       Card Meta (progress / recent) — right side before chevron
-       ============================================================ */
-    .card-meta {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 2px;
-      flex-shrink: 0;
-    }
-
-    .card-progress {
-      font-size: 13px;
+      transition: background 0.1s;
+      color: var(--text-secondary);
+      font-size: 14px;
       font-weight: 500;
-      color: var(--tint);
-      letter-spacing: -0.1px;
     }
+    .sidebar-item:hover { background: var(--surface2); }
+    .sidebar-item.active { background: var(--accent-soft); color: var(--accent); }
+    .sidebar-item svg { width: 18px; height: 18px; }
+    .page-container { padding-bottom: 0; }
+  }
 
-    .card-recent {
-      font-size: 11px;
-      font-weight: 400;
-      color: var(--label-tertiary);
-      white-space: nowrap;
-    }
+  @media (max-width: 767px) {
+    .sidebar { display: none; }
+  }
 
-    /* ============================================================
-       Chevron
-       ============================================================ */
-    .card-chevron {
-      flex-shrink: 0;
-      width: 8px;
-      height: 14px;
-      margin-left: 4px;
-      opacity: 0.28;
-      fill: none;
-      stroke: var(--label-primary);
-      stroke-width: 2.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
+  /* Scroll area fill */
+  .scroll-pad { height: 40px; }
 
-    /* ============================================================
-       Footer
-       ============================================================ */
-    .footer {
-      text-align: center;
-      padding: 12px 0 40px;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
+  /* ─── REVIEW TEMPLATE EDITOR ─── */
+  .sheet-text-btn {
+    background: none; border: none; box-shadow: none;
+    width: auto; height: auto; border-radius: 0;
+    font-size: 16px; font-weight: 500;
+    font-family: inherit; cursor: pointer;
+    color: var(--text-secondary);
+    padding: 4px 2px;
+  }
+  .sheet-text-btn.accent { color: var(--system-blue); font-weight: 600; }
 
-    .footer-name {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--label-tertiary);
-      letter-spacing: -0.05px;
-    }
+  .tpl-section-title {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.8px;
+    color: var(--text-tertiary);
+    margin: 20px 4px 8px;
+  }
+  .tpl-section-title:first-child { margin-top: 4px; }
 
-    .footer-version {
-      font-size: 12px;
-      font-weight: 400;
-      color: var(--label-quaternary);
-    }
+  .tpl-field-row { padding: 12px 16px; }
+  .tpl-drag-handle {
+    display: flex; flex-direction: column; gap: 2px;
+    flex-shrink: 0; width: 28px;
+  }
+  .tpl-move-btn {
+    width: 26px; height: 18px;
+    border: none; background: var(--surface2);
+    border-radius: 5px; cursor: pointer;
+    font-size: 9px; color: var(--text-secondary);
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1; padding: 0;
+  }
+  .tpl-move-btn:active { opacity: 0.5; }
 
-    /* ============================================================
-       Reduced-motion
-       ============================================================ */
-    @media (prefers-reduced-motion: reduce) {
-      .card { transition: none; }
-      .card:active { transform: none; }
-    }
-  </style>
+  /* iOS toggle switch */
+  .tpl-toggle {
+    width: 44px; height: 26px;
+    border-radius: 100px;
+    background: var(--text-tertiary);
+    position: relative;
+    transition: background 0.2s;
+    cursor: pointer; flex-shrink: 0;
+    opacity: 0.5;
+  }
+  .tpl-toggle.on { background: var(--system-blue); opacity: 1; }
+  .tpl-toggle-knob {
+    position: absolute;
+    top: 2px; left: 2px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+  }
+  .tpl-toggle.on .tpl-toggle-knob { transform: translateX(18px); }
+
+  .tpl-add-field-btn {
+    width: 100%; margin-top: 12px;
+    padding: 13px;
+    border-radius: var(--radius-sm);
+    background: var(--surface2);
+    color: var(--text-primary);
+    font-size: 15px; font-weight: 600;
+    border: none;
+    cursor: pointer; font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .tpl-add-field-btn:active { background: rgba(0,0,0,0.07); }
+  body[data-theme="dark"] .tpl-add-field-btn:active { background: rgba(255,255,255,0.08); }
+
+  /* Template preview */
+  .tpl-preview {
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    box-shadow: var(--shadow-sm);
+    border: 0.5px solid var(--border);
+  }
+  .tpl-preview-title {
+    font-size: 13px; font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+  }
+  .tpl-preview-field { margin-bottom: 14px; }
+  .tpl-preview-field:last-child { margin-bottom: 0; }
+  .tpl-preview-label {
+    font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    color: var(--text-tertiary); margin-bottom: 5px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .tpl-preview-label .fi { width: 11px; height: 11px; opacity: 0.6; }
+  .tpl-preview-input {
+    font-size: 14px; color: var(--text-tertiary);
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    padding: 8px 11px; min-height: 36px;
+  }
+  .tpl-preview-pills { display: flex; gap: 5px; flex-wrap: wrap; }
+  .tpl-preview-pill {
+    font-size: 11px; padding: 3px 9px;
+    border-radius: 100px; background: var(--accent-soft);
+    color: var(--accent); font-weight: 500;
+  }
+
+  /* Field editor stacked rows */
+  .fe-stack-row {
+    display: flex; flex-direction: column;
+    align-items: stretch; gap: 7px;
+    padding: 13px 16px;
+  }
+  .fe-stack-label {
+    font-size: 12px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.6px;
+    color: var(--text-tertiary);
+  }
+  .fe-stack-row .form-input { background: var(--bg); }
+
+  /* Nested sheet (Field Editor) sits above the Template Editor sheet */
+  #fieldEditorSheet { z-index: 350; }
+</style>
 </head>
-<body>
+<body data-theme="system">
 
-<div class="page">
+<div id="app">
+  <!-- iPad Sidebar -->
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="2" width="14" height="16" rx="3"/>
+        <line x1="7" y1="7" x2="13" y2="7"/>
+        <line x1="7" y1="11" x2="13" y2="11"/>
+        <line x1="7" y1="15" x2="10" y2="15"/>
+      </svg>
+      <span data-i18n="appName">Daily Journal</span>
+    </div>
+    <div class="sidebar-item active" onclick="switchPage('home')" id="sidebar-home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span data-i18n="home">Home</span>
+    </div>
+    <div class="sidebar-item" onclick="switchPage('notes')" id="sidebar-notes">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      <span data-i18n="notes">Notes</span>
+    </div>
+    <div class="sidebar-item" onclick="switchPage('calendar')" id="sidebar-calendar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3" ry="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span data-i18n="calendar">Calendar</span>
+    </div>
+    <div class="sidebar-item" onclick="switchPage('settings')" id="sidebar-settings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+      <span data-i18n="settings">Settings</span>
+    </div>
+  </nav>
 
-  <!-- ===================== Header ===================== -->
-  <header class="header">
-    <div class="header-icon">📚</div>
-    <h1 class="header-title">Study Resources</h1>
-    <p class="header-subtitle">Choose a subject to continue learning.</p>
-  </header>
+  <!-- Main content -->
+  <div style="flex:1; overflow:hidden; display:flex; flex-direction:column;">
+    <div class="page-container">
 
-  <!-- ===================== Card List =====================
-       To add a new card, add a new object to the `resources`
-       array in the <script> section below. That's it.
-  ====================================================== -->
-  <p class="section-label">Active</p>
-  <ul class="card-list" id="active-list" role="list"></ul>
+      <!-- ═══ HOME PAGE ═══ -->
+      <div class="page active" id="page-home">
+        <div class="home-header">
+          <div class="home-header-left">
+            <!-- Cat line-art — embedded as Base64 data URI (single-file, no external asset) -->
+            <img class="header-doodle" src="data:image/png;base64,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" alt="Cat lineart" />
 
-  <p class="section-label">Coming Soon</p>
-  <ul class="card-list" id="coming-list" role="list"></ul>
+            <div class="header-greeting">
+              <div class="greeting-text" id="greetingText">Good evening</div>
+              <div class="greeting-date" id="greetingDate">August 11</div>
+            </div>
+          </div>
+          <div class="header-actions">
+            <button class="icon-btn" onclick="openSearch()" title="Search">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
+            <button class="icon-btn" onclick="openNewJournal()" title="New Journal">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+          </div>
+        </div>
 
-  <!-- ===================== Footer ===================== -->
-  <footer class="footer">
-    <span class="footer-name">Study Resources</span>
-    <span class="footer-version">v1.0</span>
-  </footer>
+        <div class="cards-list" id="journalCardsList">
+          <!-- cards injected by JS -->
+        </div>
+        <div class="scroll-pad"></div>
+      </div>
 
+      <!-- ═══ NOTES PAGE ═══ -->
+      <div class="page" id="page-notes">
+        <div class="notes-header">
+          <div class="page-title" data-i18n="notes">Notes</div>
+          <button class="icon-btn" onclick="openSearch('notes')">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+        </div>
+
+        <div class="notes-filter" id="notesFilter">
+          <div class="filter-pill active" onclick="filterNotes('all', this)" data-i18n="all">All</div>
+          <div class="filter-pill" onclick="filterNotes('gratitude', this)" data-i18n="gratitude">Gratitude</div>
+          <div class="filter-pill" onclick="filterNotes('release', this)" data-i18n="release">Release</div>
+          <div class="filter-pill" onclick="filterNotes('manifest', this)" data-i18n="manifest">Manifest</div>
+          <div class="filter-pill" onclick="filterNotes('finished', this)" data-i18n="finished">Finished</div>
+        </div>
+
+        <div class="sticky-wall" id="stickyWall">
+          <!-- sticky notes injected by JS -->
+        </div>
+        <div class="scroll-pad"></div>
+      </div>
+
+      <!-- ═══ CALENDAR PAGE ═══ -->
+      <div class="page" id="page-calendar">
+        <div class="calendar-header">
+          <button class="cal-nav-btn" onclick="calNav(-1)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="cal-month-year" id="calMonthYear"></div>
+          <button class="cal-nav-btn" onclick="calNav(1)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+
+        <div class="cal-weekdays">
+          <div class="cal-weekday" data-i18n="w1">Mon</div>
+          <div class="cal-weekday" data-i18n="w2">Tue</div>
+          <div class="cal-weekday" data-i18n="w3">Wed</div>
+          <div class="cal-weekday" data-i18n="w4">Thu</div>
+          <div class="cal-weekday" data-i18n="w5">Fri</div>
+          <div class="cal-weekday" data-i18n="w6">Sat</div>
+          <div class="cal-weekday" data-i18n="w7">Sun</div>
+        </div>
+
+        <div class="cal-grid" id="calGrid"></div>
+
+        <div class="cal-detail" id="calDetail">
+          <div class="cal-no-journal">
+            <!-- Hand-drawn cloud doodle — unified doodle system -->
+            <svg class="cal-cloud" style="width:18px;height:13px;opacity:0.9" viewBox="0 0 30 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 16 C3 16 2 11 6 10 C5 6 10 4 13 7 C15 3 21 4 21 9 C25 8 28 12 25 16 Z"/>
+            </svg>
+            <p>Select a date</p>
+            <small>Tap a date to see your journal</small>
+          </div>
+        </div>
+
+        <div class="scroll-pad"></div>
+      </div>
+
+      <!-- ═══ SETTINGS PAGE — black/white Apple-Settings style ═══ -->
+      <div class="page" id="page-settings">
+        <div class="settings-header">
+          <div class="page-title" data-i18n="settings">Settings</div>
+        </div>
+
+        <!-- APPEARANCE -->
+        <div class="settings-section">
+          <div class="settings-section-title" data-i18n="appearanceSec">Appearance</div>
+          <div class="settings-group">
+            <div class="settings-row" onclick="openAppearance()">
+              <div class="settings-row-content"><div class="settings-row-label" data-i18n="appearance">Appearance</div></div>
+              <div class="settings-row-right">
+                <span id="appearanceValue" class="row-value" data-i18n="system">System</span>
+                <span class="settings-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- LANGUAGE -->
+        <div class="settings-section">
+          <div class="settings-section-title" data-i18n="languageSec">Language</div>
+          <div class="settings-group">
+            <div class="settings-row" onclick="openLanguage()">
+              <div class="settings-row-content"><div class="settings-row-label" data-i18n="language">Language</div></div>
+              <div class="settings-row-right">
+                <span id="languageValue" class="row-value">English</span>
+                <span class="settings-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAILY REVIEW -->
+        <div class="settings-section">
+          <div class="settings-section-title" data-i18n="dailyReviewSec">Daily Review</div>
+          <div class="settings-group">
+            <div class="settings-row" onclick="openTemplateEditor()">
+              <div class="settings-row-content">
+                <div class="settings-row-label" data-i18n="reviewTemplate">Review Template</div>
+                <div class="settings-row-sub" data-i18n="reviewTemplateSub">Customize what you write every day.</div>
+              </div>
+              <div class="settings-row-right">
+                <span id="tplFieldCount" class="row-value"></span>
+                <span class="settings-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- DATA -->
+        <div class="settings-section">
+          <div class="settings-section-title" data-i18n="dataSec">Data</div>
+          <div class="settings-group">
+            <div class="settings-row" onclick="exportJournals()">
+              <div class="settings-row-content"><div class="settings-row-label" data-i18n="exportJournals">Export Journals</div></div>
+              <div class="settings-row-right"><span class="settings-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+            </div>
+            <div class="settings-row" onclick="importJournals()">
+              <div class="settings-row-content"><div class="settings-row-label" data-i18n="importJournals">Import Journals</div></div>
+              <div class="settings-row-right"><span class="settings-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+            </div>
+            <div class="settings-row danger" onclick="confirmClear()">
+              <div class="settings-row-content"><div class="settings-row-label danger-label" data-i18n="clearLocalData">Clear Local Data</div></div>
+              <div class="settings-row-right"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SHORTCUT -->
+        <div class="settings-section">
+          <div class="settings-section-title" data-i18n="shortcutSec">Shortcut</div>
+          <div class="settings-group">
+            <div class="settings-row" onclick="showSchema()">
+              <div class="settings-row-content">
+                <div class="settings-row-label" data-i18n="shortcutIntegration">Shortcut Integration</div>
+                <div class="settings-row-sub" data-i18n="shortcutSubtitle">How to send entries from Shortcuts</div>
+              </div>
+              <div class="settings-row-right"><span class="settings-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+            </div>
+            <div class="settings-row" onclick="showSchema()">
+              <div class="settings-row-content">
+                <div class="settings-row-label" data-i18n="viewJsonSchema">View JSON Schema</div>
+                <div class="settings-row-sub" data-i18n="schemaSubtitle">Data format for importing entries</div>
+              </div>
+              <div class="settings-row-right"><span class="settings-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ABOUT -->
+        <div class="settings-section">
+          <div class="settings-section-title" data-i18n="aboutSec">About</div>
+          <div class="settings-group">
+            <div class="settings-row" onclick="openAbout()">
+              <div class="settings-row-content">
+                <div class="settings-row-label" data-i18n="aboutDailyJournal">About Daily Journal</div>
+                <div class="settings-row-sub" data-i18n="versionLocalOnly">Version 1.0.0 · Local Only</div>
+              </div>
+              <div class="settings-row-right"><span class="settings-chevron"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="scroll-pad"></div>
+      </div>
+
+    </div><!-- end page-container -->
+
+    <!-- Bottom Tab Bar (mobile) -->
+    <nav class="tab-bar">
+      <div class="tab-item active" id="tab-home" onclick="switchPage('home')">
+        <span class="tab-label" data-i18n="home">Home</span>
+      </div>
+      <div class="tab-item" id="tab-notes" onclick="switchPage('notes')">
+        <span class="tab-label" data-i18n="notes">Notes</span>
+      </div>
+      <div class="tab-item" id="tab-calendar" onclick="switchPage('calendar')">
+        <span class="tab-label" data-i18n="calendar">Calendar</span>
+      </div>
+      <div class="tab-item" id="tab-settings" onclick="switchPage('settings')">
+        <span class="tab-label" data-i18n="settings">Settings</span>
+      </div>
+    </nav>
+  </div><!-- end main column -->
+</div><!-- end #app -->
+
+<!-- ─── SHEETS & OVERLAYS ─── -->
+
+<!-- Search Overlay -->
+<div class="search-overlay" id="searchOverlay" onclick="closeSearchIfBg(event)">
+  <div class="search-box">
+    <div class="search-input-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input class="search-input" id="searchInput" placeholder="Search journals…" data-i18n-ph="searchPlaceholder" oninput="doSearch(this.value)">
+      <button class="search-cancel" onclick="closeSearch()" data-i18n="cancel">Cancel</button>
+    </div>
+    <div class="search-results" id="searchResults">
+      <div class="search-empty" data-i18n="startTyping">Start typing to search</div>
+    </div>
+  </div>
 </div>
 
-<!-- ============================================================
-     Data — add / edit cards here only.
-     Fields:
-       title    — primary label
-       subtitle — secondary label
-       icon     — emoji icon
-       file     — target HTML file (null = coming soon)
-       progress — e.g. "12 / 18" or "75%" or "" for empty
-       recent   — e.g. "Just now" or "Yesterday" or ""
-     ============================================================ -->
+<!-- Journal Detail Sheet -->
+<div class="sheet-overlay" id="detailSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <button class="icon-btn" onclick="closeSheet('detailSheet')" style="background:none;box-shadow:none;width:auto;height:auto;border-radius:0;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2.5" stroke-linecap="round" style="width:20px;height:20px;"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="sheet-title" id="detailSheetTitle"></div>
+      <div class="sheet-actions">
+        <button class="icon-btn" id="detailDeleteBtn" style="background:none;box-shadow:none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#FF453A" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px;"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="sheet-body" id="detailSheetBody">
+      <!-- Journal detail content -->
+    </div>
+  </div>
+</div>
+
+<!-- Note Detail Sheet -->
+<div class="sheet-overlay" id="noteDetailSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <button class="icon-btn" onclick="closeSheet('noteDetailSheet')" style="background:none;box-shadow:none;width:auto;height:auto;border-radius:0;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2.5" stroke-linecap="round" style="width:20px;height:20px;"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="sheet-title">Note Detail</div>
+      <div style="width:28px;"></div>
+    </div>
+    <div class="sheet-body" id="noteDetailBody"></div>
+  </div>
+</div>
+
+<!-- New Journal Sheet -->
+<div class="sheet-overlay" id="newJournalSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <button class="icon-btn" onclick="closeSheet('newJournalSheet')" style="background:none;box-shadow:none;width:auto;height:auto;border-radius:0;color:var(--text-secondary);font-size:14px;font-weight:500;" data-i18n="cancel">Cancel</button>
+      <div class="sheet-title" data-i18n="newJournal">New Journal</div>
+      <button class="icon-btn" onclick="saveNewJournal()" style="background:none;box-shadow:none;width:auto;height:auto;border-radius:0;color:var(--accent);font-size:14px;font-weight:600;" data-i18n="done">Done</button>
+    </div>
+    <div class="sheet-body">
+      <div class="new-journal-form">
+        <div id="njFieldsContainer"><!-- fields injected by template --></div>
+        <button class="save-journal-btn" onclick="saveNewJournal()" data-i18n="saveJournal">Save Journal</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Schema Sheet -->
+<div class="sheet-overlay" id="schemaSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <button class="icon-btn" onclick="closeSheet('schemaSheet')" style="background:none;box-shadow:none;width:auto;height:auto;border-radius:0;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--text-secondary)" stroke-width="2.5" stroke-linecap="round" style="width:20px;height:20px;"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="sheet-title">Shortcut Integration</div>
+      <div style="width:28px;"></div>
+    </div>
+    <div class="sheet-body">
+      <p style="padding:0 16px 12px;font-size:13px;color:var(--text-secondary);line-height:1.6;">Pass this JSON schema via URL parameter <code style="background:var(--surface2);padding:2px 6px;border-radius:6px;font-size:11px;">entry</code>. Unknown fields automatically appear in the Additional section.</p>
+      <pre class="schema-code">{
+  "date": "2026-08-11",
+  "createdAt": "2026-08-11T20:00:00",
+  "work": "...",
+  "status": "...",
+  "finish": "...",
+  "subjects": ["English", "Chinese"],
+  "gratitude": "...",
+  "release": "...",
+  "manifest": "...",
+  "extra": {
+    "mood": "...",
+    "sleep": "...",
+    "exercise": "..."
+  }
+}</pre>
+      <button class="copy-schema-btn" onclick="copySchema()" data-i18n="copySchema">Copy Schema</button>
+      <div style="height:20px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Appearance Sheet (black/white iOS theme picker) -->
+<div class="sheet-overlay" id="appearanceSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <button class="sheet-text-btn" onclick="closeSheet('appearanceSheet')" data-i18n="back">‹ Back</button>
+      <div class="sheet-title" data-i18n="appearance">Appearance</div>
+      <div style="width:44px;"></div>
+    </div>
+    <div class="sheet-body" style="padding-top:4px;">
+      <div class="settings-group" style="margin:0;">
+        <div class="settings-row" onclick="setTheme('system')">
+          <div class="settings-row-content"><div class="settings-row-label" data-i18n="system">System</div></div>
+          <div class="settings-row-right"><span id="check-system" class="check-mark">✓</span></div>
+        </div>
+        <div class="settings-row" onclick="setTheme('light')">
+          <div class="settings-row-content"><div class="settings-row-label" data-i18n="light">Light</div></div>
+          <div class="settings-row-right"><span id="check-light" class="check-mark" style="display:none">✓</span></div>
+        </div>
+        <div class="settings-row" onclick="setTheme('dark')">
+          <div class="settings-row-content"><div class="settings-row-label" data-i18n="dark">Dark</div></div>
+          <div class="settings-row-right"><span id="check-dark" class="check-mark" style="display:none">✓</span></div>
+        </div>
+      </div>
+      <div style="height:24px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Language Sheet -->
+<div class="sheet-overlay" id="languageSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <button class="sheet-text-btn" onclick="closeSheet('languageSheet')" data-i18n="back">‹ Back</button>
+      <div class="sheet-title" data-i18n="language">Language</div>
+      <div style="width:44px;"></div>
+    </div>
+    <div class="sheet-body" style="padding-top:4px;">
+      <div class="settings-group" style="margin:0;">
+        <div class="settings-row" onclick="setLang('en')">
+          <div class="settings-row-content"><div class="settings-row-label" data-i18n="english">English</div></div>
+          <div class="settings-row-right"><span id="check-en" class="check-mark">✓</span></div>
+        </div>
+        <div class="settings-row" onclick="setLang('zh')">
+          <div class="settings-row-content"><div class="settings-row-label" data-i18n="chinese">中文</div></div>
+          <div class="settings-row-right"><span id="check-zh" class="check-mark" style="display:none">✓</span></div>
+        </div>
+      </div>
+      <div style="height:24px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Review Template Editor Sheet -->
+<div class="sheet-overlay" id="templateSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <button class="sheet-text-btn" onclick="closeSheet('templateSheet')" data-i18n="back">‹ Back</button>
+      <div class="sheet-title">Review Template</div>
+      <button class="sheet-text-btn accent" onclick="saveTemplateAndClose()" data-i18n="done">Done</button>
+    </div>
+    <div class="sheet-body" style="padding-top:4px;">
+      <!-- Template name -->
+      <div class="settings-group" style="margin:0 0 4px;">
+        <div class="settings-row" onclick="editTemplateName()">
+          <div class="settings-row-content">
+            <div class="settings-row-label">Template Name</div>
+          </div>
+          <div class="settings-row-right">
+            <span id="tplNameDisplay" style="font-size:13px;color:var(--text-tertiary);">Daily Review</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview -->
+      <div class="tpl-section-title" data-i18n="preview">Preview</div>
+      <div class="tpl-preview" id="tplPreview"></div>
+
+      <!-- Current Template -->
+      <div class="tpl-section-title" data-i18n="currentTemplate">Current Template</div>
+      <div class="settings-group" id="tplFieldsList"></div>
+      <button class="tpl-add-field-btn" onclick="openAddField()" data-i18n="addField">+ Add Field</button>
+
+      <!-- Detected fields (from existing data / Shortcut) -->
+      <div id="tplDetectedWrap" style="display:none;">
+        <div class="tpl-section-title" data-i18n="detectedFields">Detected Fields</div>
+        <div class="settings-group" id="tplDetectedList"></div>
+      </div>
+      <div style="height:24px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Field Editor Sheet -->
+<div class="sheet-overlay" id="fieldEditorSheet">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <button class="sheet-text-btn" onclick="closeFieldEditor()" data-i18n="cancel">Cancel</button>
+      <div class="sheet-title" id="fieldEditorTitle">Field</div>
+      <button class="sheet-text-btn accent" onclick="saveField()" data-i18n="save">Save</button>
+    </div>
+    <div class="sheet-body" style="padding-top:4px;">
+      <div class="settings-group" style="margin:0 0 4px;">
+        <div class="settings-row fe-stack-row">
+          <div class="fe-stack-label" data-i18n="fieldName">Field Name</div>
+          <input class="form-input" id="feName" placeholder="Field name" autocomplete="off">
+        </div>
+      </div>
+      <div class="settings-group" style="margin:0 0 4px;">
+        <div class="settings-row fe-stack-row">
+          <div class="fe-stack-label" data-i18n="placeholder">Placeholder</div>
+          <input class="form-input" id="fePlaceholder" placeholder="Placeholder text" data-i18n-ph="placeholderText" autocomplete="off">
+        </div>
+      </div>
+      <div class="tpl-section-title" data-i18n="type">Type</div>
+      <div class="settings-group" id="feTypeGroup"></div>
+      <div id="feDeleteWrap" style="display:none;">
+        <div style="height:24px;"></div>
+        <div class="settings-group">
+          <div class="settings-row" onclick="deleteField()" style="justify-content:center;">
+            <div class="settings-row-label danger-label" data-i18n="deleteField">Delete Field</div>
+          </div>
+        </div>
+      </div>
+      <div style="height:24px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Clear Dialog -->
+<div class="confirm-overlay" id="confirmOverlay">
+  <div class="confirm-box">
+    <div class="confirm-body">
+      <div class="confirm-title" data-i18n="clearAllDataTitle">Clear All Data?</div>
+      <div class="confirm-msg" data-i18n="clearAllDataMsg">This will permanently delete all your journals and notes. This action cannot be undone.</div>
+    </div>
+    <div class="confirm-actions">
+      <button class="confirm-btn" onclick="closeConfirm()" data-i18n="cancel">Cancel</button>
+      <button class="confirm-btn danger" onclick="clearAllData()" data-i18n="deleteAll">Delete All</button>
+    </div>
+  </div>
+</div>
+
+<!-- Quote Popup -->
+<div class="quote-popup" id="quotePopup" onclick="closeQuote()">
+  <div class="quote-popup-deco">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5 L9.3 5.8 L13.8 5.8 L10.1 8.5 L11.4 12.8 L8 10.1 L4.6 12.8 L5.9 8.5 L2.2 5.8 L6.7 5.8 Z"/></svg>
+    <svg width="18" height="14" viewBox="0 0 30 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16 C3 16 2 11 6 10 C5 6 10 4 13 7 C15 3 21 4 21 9 C25 8 28 12 25 16 Z"/></svg>
+  </div>
+  <div class="quote-popup-text" id="quoteText"></div>
+  <div class="quote-popup-heart">
+    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14 C3 10 1.5 7 1.5 5 C1.5 3 3 1.5 5 1.5 C6.5 1.5 7.5 2.5 8 3.5 C8.5 2.5 9.5 1.5 11 1.5 C13 1.5 14.5 3 14.5 5 C14.5 7 13 10 8 14 Z"/></svg>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- Hidden file input for import -->
+<input type="file" id="importFileInput" accept=".json" style="display:none" onchange="handleImport(event)">
+
 <script>
-  const resources = [
-    // ── Active ──────────────────────────────────────────────────
-    {
-      title:    "English Grammar",
-      subtitle: "Grammar Dashboard",
-      icon:     "🇬🇧",
-      file:     "grammar.html",
-      progress: "",
-      recent:   ""
-    },
-    {
-      title:    "Chinese Literature",
-      subtitle: "大学语文",
-      icon:     "📖",
-      file:     "chinese.html",
-      progress: "",
-      recent:   ""
-    },
+// ════════════════════════════════════════════════
+// I18N — English / 中文 (affects UI only; never user data or custom template)
+// ════════════════════════════════════════════════
+const I18N = {
+  en: {
+    appName:'Daily Journal', home:'Home', notes:'Notes', calendar:'Calendar', settings:'Settings',
+    goodMorning:'Good morning', goodAfternoon:'Good afternoon', goodEvening:'Good evening',
+    journal:'Journal', newJournal:'New Journal', done:'Done', cancel:'Cancel', save:'Save', delete:'Delete',
+    search:'Search', viewJournal:'View Journal', noJournalYet:'No journal yet', nothingWritten:'Nothing written on this day',
+    reviewTemplate:'Review Template', currentTemplate:'Current Template', addField:'Add Field',
+    editField:'Edit Field', fieldName:'Field Name', placeholder:'Placeholder', type:'Type',
+    text:'Text', longText:'Long Text', select:'Select', multiSelect:'Multi Select',
+    appearance:'Appearance', system:'System', light:'Light', dark:'Dark',
+    language:'Language', english:'English', chinese:'中文',
+    exportJournals:'Export Journals', importJournals:'Import Journals', clearLocalData:'Clear Local Data',
+    shortcutIntegration:'Shortcut Integration', viewJsonSchema:'View JSON Schema',
+    aboutDailyJournal:'About Daily Journal',
+    appearanceSec:'Appearance', languageSec:'Language', dailyReviewSec:'Daily Review', dataSec:'Data',
+    shortcutSec:'Shortcut', aboutSec:'About',
+    reviewTemplateSub:'Customize what you write every day.',
+    shortcutSubtitle:'How to send entries from Shortcuts', schemaSubtitle:'Data format for importing entries', versionLocalOnly:'Version 1.0.0 · Local Only',
+    all:'All', gratitude:'Gratitude', release:'Release', manifest:'Manifest', finished:'Finished',
+    w1:'Mon', w2:'Tue', w3:'Wed', w4:'Thu', w5:'Fri', w6:'Sat', w7:'Sun',
+    searchPlaceholder:'Search journals…', startTyping:'Start typing to search', emptySub:'Run your Shortcut to write your first entry, or tap + to start.', noNotesYet:'No notes yet', notesEmptySub:'Your journal entries will appear here as notes.', back:'Back',
+    preview:'Preview', detectedFields:'Detected Fields', templateName:'Template Name',
+    clearAllDataTitle:'Clear All Data?', clearAllDataMsg:'This will permanently delete all your journals and notes. This action cannot be undone.', deleteAll:'Delete All', copySchema:'Copy Schema', viewFullJournal:'View Full Journal',
+    saveJournal:'Save Journal', saveField:'Save', deleteField:'Delete Field', noFieldsEnabled:'No fields enabled', newFieldDetected:'New field detected', add:'Add', deleteJournalConfirm:'Delete journal for', deleteFieldConfirm:'Delete this field from the template? Existing journal data is preserved.',
+    selectADate:'Select a date', tapADateToSee:'Tap a date to see your journal', additional:'Additional',
+    nothingWrittenToday:'Nothing written today.', noJournalsYet:'No journals yet',
+    journalOnDay:'You have a journal on this day.',
+    exported:'Exported ✓', imported:'Imported', allDataCleared:'All data cleared',
+    schemaCopied:'Schema copied ✓', copyFailed:'Copy failed', journalDeleted:'Journal deleted', journalNotFound:'Journal not found',
+    journalSaved:'Journal saved', noteDeleted:'Note deleted',
+    fieldPlaceholderText:'Placeholder text', placeholderText:'Placeholder text',
+  },
+  zh: {
+    appName:'每日手账', home:'首页', notes:'便签', calendar:'日历', settings:'设置',
+    goodMorning:'早上好', goodAfternoon:'下午好', goodEvening:'晚上好',
+    journal:'日记', newJournal:'新建日记', done:'完成', cancel:'取消', save:'保存', delete:'删除',
+    search:'搜索', viewJournal:'查看日记', noJournalYet:'还没有日记', nothingWritten:'这一天还没有内容',
+    reviewTemplate:'Review 模板', currentTemplate:'当前模板', addField:'添加字段',
+    editField:'编辑字段', fieldName:'字段名称', placeholder:'占位提示', type:'类型',
+    text:'文本', longText:'长文本', select:'选择', multiSelect:'多选',
+    appearance:'外观', system:'跟随系统', light:'浅色', dark:'深色',
+    language:'语言', english:'English', chinese:'中文',
+    exportJournals:'导出日记', importJournals:'导入日记', clearLocalData:'清除本地数据',
+    shortcutIntegration:'快捷指令集成', viewJsonSchema:'查看 JSON 结构',
+    aboutDailyJournal:'关于每日手账',
+    appearanceSec:'外观', languageSec:'语言', dailyReviewSec:'每日回顾', dataSec:'数据',
+    shortcutSec:'快捷指令', aboutSec:'关于',
+    reviewTemplateSub:'自定义每天要写的内容。',
+    shortcutSubtitle:'如何从快捷指令发送日记', schemaSubtitle:'导入日记的数据格式', versionLocalOnly:'版本 1.0.0 · 仅本地',
+    all:'全部', gratitude:'感恩', release:'放下', manifest:'显化', finished:'完成',
+    w1:'一', w2:'二', w3:'三', w4:'四', w5:'五', w6:'六', w7:'日',
+    searchPlaceholder:'搜索日记…', startTyping:'输入开始搜索', emptySub:'运行快捷指令写下第一篇日记，或点击 + 开始。', noNotesYet:'还没有便签', notesEmptySub:'你的日记内容会以便签形式显示在这里。', back:'返回',
+    preview:'预览', detectedFields:'检测到的字段', templateName:'模板名称',
+    clearAllDataTitle:'清除全部数据？', clearAllDataMsg:'这将永久删除所有日记和便签，且无法撤销。', deleteAll:'全部删除', copySchema:'复制结构', viewFullJournal:'查看完整日记',
+    saveJournal:'保存日记', saveField:'保存', deleteField:'删除字段', noFieldsEnabled:'没有启用的字段', newFieldDetected:'检测到新字段', add:'添加', deleteJournalConfirm:'删除', deleteFieldConfirm:'从模板中删除此字段？已有日记数据会被保留。',
+    selectADate:'选择一个日期', tapADateToSee:'点击日期查看日记', additional:'其他内容',
+    nothingWrittenToday:'这一天还没有内容。', noJournalsYet:'还没有日记',
+    journalOnDay:'这一天已经有日记了。',
+    exported:'已导出 ✓', imported:'已导入', allDataCleared:'已清除全部数据',
+    schemaCopied:'已复制 ✓', copyFailed:'复制失败', journalDeleted:'日记已删除', journalNotFound:'日记未找到',
+    journalSaved:'日记已保存', noteDeleted:'便签已删除',
+    fieldPlaceholderText:'占位文字', placeholderText:'占位文字',
+  }
+};
 
-    // ── Coming Soon ──────────────────────────────────────────────
-    {
-      title:    "Reading",
-      subtitle: "Comprehension & Analysis",
-      icon:     "👁",
-      file:     null,
-      progress: "",
-      recent:   ""
-    },
-    {
-      title:    "Politics",
-      subtitle: "政治理论",
-      icon:     "🏛️",
-      file:     null,
-      progress: "",
-      recent:   ""
-    },
-    {
-      title:    "Vocabulary",
-      subtitle: "Word Bank",
-      icon:     "🔤",
-      file:     null,
-      progress: "",
-      recent:   ""
-    },
-    {
-      title:    "Translation",
-      subtitle: "EN ↔ ZH",
-      icon:     "🌐",
-      file:     null,
-      progress: "",
-      recent:   ""
-    },
-    {
-      title:    "Writing",
-      subtitle: "Essays & Composition",
-      icon:     "✍️",
-      file:     null,
-      progress: "",
-      recent:   ""
-    },
-    {
-      title:    "Quiz Hub",
-      subtitle: "Practice & Review",
-      icon:     "🧩",
-      file:     null,
-      progress: "",
-      recent:   ""
-    },
-    {
-      title:    "Weekly Planner",
-      subtitle: "Schedule & Goals",
-      icon:     "🗓️",
-      file:     null,
-      progress: "",
-      recent:   ""
+let LANG = 'en';
+const LANG_KEY = 'dj_lang';
+function t(key){ return (I18N[LANG] && I18N[LANG][key] != null) ? I18N[LANG][key] : (I18N.en[key] != null ? I18N.en[key] : key); }
+function setLang(lang){
+  LANG = (lang==='zh') ? 'zh' : 'en';
+  try { localStorage.setItem(LANG_KEY, LANG); } catch(e){}
+  // update language checkmarks
+  const ce = document.getElementById('check-en'); if(ce) ce.style.display = LANG==='en' ? '' : 'none';
+  const cz = document.getElementById('check-zh'); if(cz) cz.style.display = LANG==='zh' ? '' : 'none';
+  const lv = document.getElementById('languageValue'); if(lv){ lv.setAttribute('data-i18n', LANG==='zh' ? 'chinese' : 'english'); }
+  applyLang();
+}
+function applyLang(){
+  // Static data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(k) el.textContent = t(k);
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const k = el.getAttribute('data-i18n-ph');
+    if(k) el.setAttribute('placeholder', t(k));
+  });
+  // Dynamic content
+  try { initHeader(); } catch(e){}
+  renderHome();
+  renderNotes();
+  renderCalendar();
+  updateTplFieldCount();
+  const ts = document.getElementById('templateSheet');
+  if(ts && ts.classList.contains('active')){ renderTplName(); renderTplFields(); renderTplPreview(); renderDetectedFields(); }
+  const fe = document.getElementById('fieldEditorSheet');
+  if(fe && fe.classList.contains('active')) renderFeTypes();
+  const ss = document.getElementById('searchOverlay');
+  if(ss && ss.classList.contains('active')){ const q=(document.getElementById('searchInput')||{}).value||''; if(q.trim()) doSearch(q); }
+}
+function loadLang(){ const s = (localStorage.getItem(LANG_KEY) || 'en'); setLang(s==='zh'?'zh':'en'); }
+function openLanguage(){ openSheet('languageSheet'); }
+
+// ════════════════════════════════════════════════
+// QUOTE POOL
+// ════════════════════════════════════════════════
+const QUOTE_POOL = [
+  "Take your time.\nYou are doing fine.",
+  "Be grateful for\nthe little things.",
+  "Let go of what\nno longer serves you.",
+  "I am becoming a\nbetter version of myself.",
+  "Enjoy the process,\ntrust the timing.",
+  "Progress,\nnot perfection.",
+  "Today is a good day\nto be a good day.",
+  "You showed up.\nThat's what matters.",
+  "Small steps still\nmove you forward.",
+  "Rest is part\nof the journey.",
+  "You deserve the kindness\nyou give to others.",
+  "One day at a time,\none page at a time.",
+];
+
+// ════════════════════════════════════════════════
+// ACCENT COLORS
+// ════════════════════════════════════════════════
+const ACCENTS = ['accent-blue','accent-pink','accent-lavender','accent-mint','accent-peach','accent-yellow'];
+const ACCENT_BG = {
+  'accent-blue': '#F5F5F7',
+  'accent-pink': '#FFF5F8',
+  'accent-lavender': '#F8F5FF',
+  'accent-mint': '#F2FBF7',
+  'accent-peach': '#FFF8F2',
+  'accent-yellow': '#FFFDF0',
+};
+const STICKY_COLORS = [
+  {bg:'#FDFCF7',border:'#E8E0CC'},
+  {bg:'#FBF0F3',border:'#E8C9D4'},
+  {bg:'#F0F7F4',border:'#C9E0D5'},
+  {bg:'#F0F0F2',border:'#D1D1D6'},
+  {bg:'#F3EFFA',border:'#D5C9E8'},
+  {bg:'#FDF6EE',border:'#E8D5C0'},
+];
+
+function getAccent(dateStr) {
+  let h = 0; for(let c of dateStr) h=(h*31+c.charCodeAt(0))&0xFFFFFF;
+  return ACCENTS[h%ACCENTS.length];
+}
+function getStickyColor(id) {
+  let h = 0; for(let c of String(id)) h=(h*31+c.charCodeAt(0))&0xFFFFFF;
+  return STICKY_COLORS[h%STICKY_COLORS.length];
+}
+function getStickyRotation(id) {
+  let h = 0; for(let c of String(id)) h=(h*17+c.charCodeAt(0))&0xFFFF;
+  const rotations = [-1.5,-1,-0.5,0,0.5,1,1.5];
+  return rotations[h%rotations.length];
+}
+
+// ════════════════════════════════════════════════
+// REVIEW TEMPLATE SYSTEM
+// Template controls DISPLAY (labels / types / order). Shortcut controls DATA
+// (field ids). They are DECOUPLED: renaming a Label never breaks a Shortcut id.
+// ════════════════════════════════════════════════
+const TEMPLATE_KEY = 'daily_journal_review_template';
+
+const FIELD_TYPES = [
+  {value:'text', label:'Text'},
+  {value:'longtext', label:'Long Text'},
+  {value:'select', label:'Select'},
+  {value:'multiselect', label:'Multi Select'},
+];
+
+const FIELD_ICONS = {
+  work: '<svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4 L8 3 L13 4 L13 13 L8 12 L3 13 Z"/><line x1="8" y1="3" x2="8" y2="12"/></svg>',
+  status: '<svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><line x1="8" y1="2" x2="8" y2="4"/><line x1="8" y1="12" x2="8" y2="14"/><line x1="2" y1="8" x2="4" y2="8"/><line x1="12" y1="8" x2="14" y2="8"/><line x1="3.5" y1="3.5" x2="5" y2="5"/><line x1="11" y1="11" x2="12.5" y2="12.5"/><line x1="12.5" y1="3.5" x2="11" y2="5"/><line x1="5" y1="11" x2="3.5" y2="12.5"/></svg>',
+  finish: '<svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 8 7 12 13 4"/></svg>',
+  subjects: '<svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="10" height="9" rx="1"/><line x1="3" y1="6.5" x2="13" y2="6.5"/><circle cx="5.5" cy="9.5" r="0.5" fill="currentColor"/><circle cx="8" cy="9.5" r="0.5" fill="currentColor"/><circle cx="10.5" cy="9.5" r="0.5" fill="currentColor"/></svg>',
+  gratitude: '<svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13 C4 10 2.5 7.5 2.5 5.5 C2.5 4 3.5 3 5 3 C6.5 3 7.5 4 8 5 C8.5 4 9.5 3 11 3 C12.5 3 13.5 4 13.5 5.5 C13.5 7.5 12 10 8 13 Z"/></svg>',
+  release: '<svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7 Q4 5 6 7 T10 7 T14 7"/><path d="M2 10 Q4 8 6 10 T10 10 T14 10"/></svg>',
+  manifest: '<svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2 L9.3 5.8 L13.3 5.8 L10.1 8.3 L11.3 12.2 L8 9.7 L4.7 12.2 L5.9 8.3 L2.7 5.8 L6.7 5.8 Z"/></svg>',
+  start: '<svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="11" r="2.5"/><line x1="7" y1="9" x2="13" y2="3"/><line x1="11" y1="3" x2="13" y2="3"/><line x1="13" y1="3" x2="13" y2="5"/></svg>',
+  at: '<svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="5"/><polyline points="8 5 8 8 10 9.5"/></svg>',
+  mood: '<svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3 C13 4 14 6 14 8 C14 11 11.5 13 8 13 C6 13 4 12 3 10 C4 10.5 5 11 6.5 11 C9.5 11 12 8.5 12 5.5 C12 4.5 11.5 3.5 11 3 Z"/></svg>',
+  sleep: '<svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 3 C13 4 14 6 14 8 C14 11 11.5 13 8 13 C6 13 4 12 3 10 C4 10.5 5 11 6.5 11 C9.5 11 12 8.5 12 5.5 C12 4.5 11.5 3.5 11 3 Z"/></svg>',
+  exercise: '<svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="4" r="1.5"/><path d="M8 6 L8 10 L5 14 M8 10 L11 14 M5 8 L11 8"/></svg>',
+  reading: '<svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4 L8 3 L13 4 L13 13 L8 12 L3 13 Z"/><line x1="8" y1="3" x2="8" y2="12"/></svg>',
+  study: '<svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4 L8 3 L13 4 L13 13 L8 12 L3 13 Z"/><line x1="8" y1="3" x2="8" y2="12"/></svg>'
+};
+
+// Default template mirrors the existing fields so first run is identical & nothing breaks
+const DEFAULT_TEMPLATE = {
+  version: 1,
+  name: 'Daily Review',
+  fields: [
+    {id:'work', label:'Work', type:'longtext', enabled:true, order:0, placeholder:'What did you work on today?'},
+    {id:'status', label:'Status', type:'longtext', enabled:true, order:1, placeholder:'How are you feeling?'},
+    {id:'finish', label:'Finished', type:'longtext', enabled:true, order:2, placeholder:'What did you finish today?'},
+    {id:'subjects', label:'Tomorrow Subjects', type:'multiselect', enabled:true, order:3, placeholder:'Add subject…'},
+    {id:'gratitude', label:'Gratitude', type:'longtext', enabled:true, order:4, placeholder:'What are you grateful for?'},
+    {id:'release', label:'Release', type:'longtext', enabled:true, order:5, placeholder:'What are you letting go of?'},
+    {id:'manifest', label:'Manifest', type:'longtext', enabled:true, order:6, placeholder:'What are you calling in?'},
+  ]
+};
+
+function getTemplate() {
+  try {
+    const raw = localStorage.getItem(TEMPLATE_KEY);
+    if(raw) {
+      const t = JSON.parse(raw);
+      if(t && Array.isArray(t.fields)) return t;
     }
-  ];
+  } catch {}
+  return JSON.parse(JSON.stringify(DEFAULT_TEMPLATE));
+}
 
-  // ── Chevron SVG (inline, no CDN) ────────────────────────────
-  function chevronSVG() {
-    return `<svg class="card-chevron" viewBox="0 0 8 14" aria-hidden="true">
-      <polyline points="1,1 7,7 1,13"/>
-    </svg>`;
+function saveTemplate(tpl) {
+  try { localStorage.setItem(TEMPLATE_KEY, JSON.stringify(tpl)); } catch {}
+}
+
+function getEnabledFields() {
+  return getTemplate().fields.filter(f=>f.enabled).sort((a,b)=>a.order-b.order);
+}
+
+function fieldIcon(id) { return FIELD_ICONS[id] || '•'; }
+function fieldTypeLabel(v) {
+  const key = {text:'text', longtext:'longText', select:'select', multiselect:'multiSelect'}[v] || v;
+  return t(key);
+}
+
+// ── Dynamic New Journal form builder ──
+let newJournalData = {}; // holds multiselect arrays keyed by field id
+
+function buildFormField(f) {
+  const icon = fieldIcon(f.id);
+  const ph = escHtml(f.placeholder || '');
+  const lbl = escHtml(f.label);
+  if(f.type === 'multiselect') {
+    return `<div class="form-field" data-field="${f.id}">
+      <div class="form-label"><span class="form-label-icon">${icon}</span> ${lbl}</div>
+      <div class="subjects-input-wrap">
+        <input class="form-input nj-ms-input" data-field="${f.id}" placeholder="${ph}" onkeydown="if(event.key==='Enter'){event.preventDefault();addMultiTag('${f.id}')}">
+        <button class="add-subject-btn" onclick="addMultiTag('${f.id}')">+</button>
+      </div>
+      <div class="subjects-tags" id="nj-tags-${f.id}"></div>
+    </div>`;
+  }
+  const tag = f.type === 'longtext' ? 'textarea' : 'input';
+  const cls = f.type === 'longtext' ? 'form-textarea' : 'form-input';
+  return `<div class="form-field" data-field="${f.id}">
+    <div class="form-label"><span class="form-label-icon">${icon}</span> ${lbl}</div>
+    <${tag} class="${cls} nj-field" data-field="${f.id}" placeholder="${ph}"></${tag}>
+  </div>`;
+}
+
+// ════════════════════════════════════════════════
+// DB
+// ════════════════════════════════════════════════
+let db = null;
+const DB_NAME = 'DailyJournalDB';
+const DB_VERSION = 1;
+const STORE = 'journals';
+
+function openDB() {
+  return new Promise((resolve,reject)=>{
+    const req = indexedDB.open(DB_NAME, DB_VERSION);
+    req.onupgradeneeded = e => {
+      const d = e.target.result;
+      if(!d.objectStoreNames.contains(STORE)){
+        d.createObjectStore(STORE, {keyPath:'date'});
+      }
+    };
+    req.onsuccess = e => { db=e.target.result; resolve(db); };
+    req.onerror = e => reject(e);
+  });
+}
+
+function dbGetAll() {
+  return new Promise((resolve,reject)=>{
+    const tx = db.transaction(STORE,'readonly');
+    const store = tx.objectStore(STORE);
+    const req = store.getAll();
+    req.onsuccess = ()=>resolve(req.result||[]);
+    req.onerror = e=>reject(e);
+  });
+}
+
+function dbGet(date) {
+  return new Promise((resolve,reject)=>{
+    const tx = db.transaction(STORE,'readonly');
+    const store = tx.objectStore(STORE);
+    const req = store.get(date);
+    req.onsuccess = ()=>resolve(req.result);
+    req.onerror = e=>reject(e);
+  });
+}
+
+function dbPut(entry) {
+  return new Promise((resolve,reject)=>{
+    const tx = db.transaction(STORE,'readwrite');
+    const store = tx.objectStore(STORE);
+    const req = store.put(entry);
+    req.onsuccess = ()=>resolve();
+    req.onerror = e=>reject(e);
+  });
+}
+
+function dbDelete(date) {
+  return new Promise((resolve,reject)=>{
+    const tx = db.transaction(STORE,'readwrite');
+    const store = tx.objectStore(STORE);
+    const req = store.delete(date);
+    req.onsuccess = ()=>resolve();
+    req.onerror = e=>reject(e);
+  });
+}
+
+function dbClear() {
+  return new Promise((resolve,reject)=>{
+    const tx = db.transaction(STORE,'readwrite');
+    const store = tx.objectStore(STORE);
+    const req = store.clear();
+    req.onsuccess = ()=>resolve();
+    req.onerror = e=>reject(e);
+  });
+}
+
+// LocalStorage fallback key
+const LS_KEY = 'dailyJournalData';
+
+function lsGetAll() {
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch { return []; }
+}
+
+function lsSave(entries) {
+  try { localStorage.setItem(LS_KEY, JSON.stringify(entries)); } catch {}
+}
+
+// ════════════════════════════════════════════════
+// HELPERS
+// ════════════════════════════════════════════════
+function formatDate(dateStr) {
+  const [y,m,d] = dateStr.split('-').map(Number);
+  const dt = new Date(y,m-1,d);
+  return dt.toLocaleDateString('en-US',{month:'long',day:'numeric'});
+}
+
+function formatWeekday(dateStr) {
+  const [y,m,d] = dateStr.split('-').map(Number);
+  const dt = new Date(y,m-1,d);
+  return dt.toLocaleDateString('en-US',{weekday:'long'});
+}
+
+function todayStr() {
+  const n = new Date();
+  return `${n.getFullYear()}-${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`;
+}
+
+function greeting() {
+  const h = new Date().getHours();
+  if(h<12) return t('goodMorning');
+  if(h<18) return t('goodAfternoon');
+  return t('goodEvening');
+}
+
+function showToast(msg, dur=2000) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), dur);
+}
+
+// ════════════════════════════════════════════════
+// PAGE SWITCHING
+// ════════════════════════════════════════════════
+let currentPage = 'home';
+
+function switchPage(name) {
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item').forEach(t=>t.classList.remove('active'));
+
+  document.getElementById('page-'+name).classList.add('active');
+  const tab = document.getElementById('tab-'+name);
+  if(tab) tab.classList.add('active');
+  const sidebar = document.getElementById('sidebar-'+name);
+  if(sidebar) sidebar.classList.add('active');
+
+  currentPage = name;
+
+  if(name==='calendar') renderCalendar();
+  if(name==='notes') renderNotes();
+  if(name==='home') renderHome();
+
+  document.querySelector('.page-container').scrollTop = 0;
+}
+
+// ════════════════════════════════════════════════
+// HOME
+// ════════════════════════════════════════════════
+function initHeader() {
+  document.getElementById('greetingText').textContent = greeting();
+  const now = new Date();
+  document.getElementById('greetingDate').textContent = now.toLocaleDateString(LANG==='zh'?'zh-CN':'en-US',{month:'long',day:'numeric'});
+}
+
+async function renderHome() {
+  const entries = await getAllEntries();
+  entries.sort((a,b)=>b.date.localeCompare(a.date));
+  const list = document.getElementById('journalCardsList');
+
+  if(entries.length===0) {
+    list.innerHTML = `
+      <div class="empty-state">
+        <svg class="empty-doodle" width="80" height="80" viewBox="0 0 80 80" fill="none" stroke="var(--text-tertiary)" stroke-width="1.3" stroke-linecap="round">
+          <rect x="15" y="10" width="50" height="60" rx="8"/>
+          <line x1="25" y1="28" x2="55" y2="28"/>
+          <line x1="25" y1="38" x2="55" y2="38"/>
+          <line x1="25" y1="48" x2="45" y2="48"/>
+          <path d="M52 52 Q58 46 62 54 Q66 60 60 64 Q56 67 52 62 Z"/>
+          <line x1="60" y1="44" x2="62" y2="40"/>
+        </svg>
+        <div class="empty-title">${t('noJournalsYet')}</div>
+        <div class="empty-sub">${t('emptySub')}</div>
+      </div>`;
+    return;
   }
 
-  // ── Build one <li> card ──────────────────────────────────────
-  function buildCard(resource) {
-    const li = document.createElement("li");
-    li.setAttribute("role", "listitem");
+  list.innerHTML = entries.map(e => {
+    const accent = getAccent(e.date);
+    const subjects = Array.isArray(e.subjects) ? e.subjects : [];
+    const finish = e.finish || e.finished || '';
+    const pillsHtml = subjects.map(s=>`<span class="subject-pill">${s}</span>`).join('');
+    return `
+      <div class="journal-card ${accent}" onclick="openDetail('${e.date}')">
+        <div class="card-header">
+          <div class="card-date-block">
+            <div class="card-date">${formatDate(e.date)}</div>
+            <div class="card-weekday">${formatWeekday(e.date)}</div>
+          </div>
+          <button class="card-fav ${(e.favorite?'active':'')}" onclick="event.stopPropagation();toggleFav('${e.date}',this)">☆</button>
+        </div>
+        ${pillsHtml ? `<div class="card-subjects">${pillsHtml}</div>` : ''}
+        ${finish ? `
+          <div class="card-section-label">${t('finished')}</div>
+          <div class="card-finished-text">${escHtml(finish)}</div>
+        ` : ''}
+      </div>`;
+  }).join('');
+}
 
-    const isActive = Boolean(resource.file);
+async function toggleFav(date, btn) {
+  const entry = await dbGet(date);
+  if(!entry) return;
+  entry.favorite = !entry.favorite;
+  await dbPut(entry);
+  btn.classList.toggle('active', entry.favorite);
+  btn.textContent = entry.favorite ? '★' : '☆';
+}
 
-    if (isActive) {
-      // Clickable — use <a> for accessibility
-      li.innerHTML = `
-        <a class="card" href="${resource.file}" aria-label="${resource.title}">
-          <span class="card-icon" aria-hidden="true">${resource.icon}</span>
-          <span class="card-text">
-            <span class="card-title">${resource.title}</span>
-            <span class="card-subtitle">${resource.subtitle}</span>
-          </span>
-          <span class="card-meta">
-            ${resource.progress ? `<span class="card-progress">${resource.progress}</span>` : ""}
-            ${resource.recent   ? `<span class="card-recent">${resource.recent}</span>`     : ""}
-          </span>
-          ${chevronSVG()}
-        </a>`;
-    } else {
-      // Coming soon — not interactive
-      li.innerHTML = `
-        <div class="card coming-soon" aria-label="${resource.title} — coming soon" aria-disabled="true">
-          <span class="card-icon" aria-hidden="true">${resource.icon}</span>
-          <span class="card-text">
-            <span class="card-title">${resource.title}</span>
-            <span class="card-subtitle">${resource.subtitle}</span>
-          </span>
-          <span class="card-meta">
-            <span class="card-recent">Coming Soon</span>
-          </span>
-          ${chevronSVG()}
-        </div>`;
-    }
+// ════════════════════════════════════════════════
+// NOTES (STICKY WALL)
+// ════════════════════════════════════════════════
+let currentFilter = 'all';
+let allNotes = [];
 
-    return li;
+async function buildNotes() {
+  const entries = await getAllEntries();
+  allNotes = [];
+  entries.forEach(e => {
+    const addNote = (type, text) => {
+      if(!text) return;
+      const sentences = text.split(/[。.!！\n]+/).filter(s=>s.trim().length>6);
+      sentences.forEach((s,i) => {
+        allNotes.push({ id:`${e.date}-${type}-${i}`, date: e.date, type, text: s.trim() });
+      });
+      // Also add full text as one note if not split
+      if(sentences.length===0 && text.trim().length>0) {
+        allNotes.push({ id:`${e.date}-${type}-0`, date: e.date, type, text: text.trim() });
+      }
+    };
+    addNote('gratitude', e.gratitude);
+    addNote('release', e.release);
+    addNote('manifest', e.manifest);
+    addNote('finished', e.finish || e.finished);
+  });
+}
+
+async function renderNotes() {
+  await buildNotes();
+  renderStickyWall();
+}
+
+function renderStickyWall() {
+  const wall = document.getElementById('stickyWall');
+  let filtered = currentFilter==='all' ? allNotes : allNotes.filter(n=>n.type===currentFilter);
+
+  if(filtered.length===0) {
+    wall.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
+      <div class="empty-title">${t('noNotesYet')}</div>
+      <div class="empty-sub">${t('notesEmptySub')}</div>
+    </div>`;
+    return;
   }
 
-  // ── Render ───────────────────────────────────────────────────
-  const activeList  = document.getElementById("active-list");
-  const comingList  = document.getElementById("coming-list");
+  wall.innerHTML = filtered.map(n => {
+    const col = getStickyColor(n.id);
+    const rot = getStickyRotation(n.id);
+    const typeLabels = {gratitude:t('gratitude'),release:t('release'),manifest:t('manifest'),finished:t('finished')};
+    const typeColors = {gratitude:'#E88AA0',release:'#7C6BAA',manifest:'#4CAF88',finished:'#8E8E93'};
+    return `
+      <div class="sticky-note" onclick="openNoteDetail('${n.id}')"
+        style="background:${col.bg};border:1px solid ${col.border};transform:rotate(${rot}deg)">
+        <div class="sticky-note-type" style="color:${typeColors[n.type]||'#888'}">${typeLabels[n.type]||n.type}</div>
+        <div class="sticky-note-text">${escHtml(n.text)}</div>
+        <div class="sticky-note-meta">${formatDate(n.date)}</div>
+      </div>`;
+  }).join('');
+}
 
-  resources.forEach(r => {
-    const li = buildCard(r);
-    if (r.file) {
-      activeList.appendChild(li);
+function filterNotes(type, el) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  renderStickyWall();
+}
+
+function openNoteDetail(noteId) {
+  const note = allNotes.find(n=>n.id===noteId);
+  if(!note) return;
+  const typeLabels = {gratitude:t('gratitude'),release:t('release'),manifest:t('manifest'),finished:t('finished')};
+  document.getElementById('noteDetailBody').innerHTML = `
+    <div class="note-detail-text">${escHtml(note.text)}</div>
+    <div class="note-detail-from">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="3"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      ${formatDate(note.date)}
+    </div>
+    <div class="note-detail-from" style="margin-top:4px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      ${typeLabels[note.type]||note.type}
+    </div>
+    <div style="height:16px"></div>
+    <button class="view-journal-btn" onclick="closeSheet('noteDetailSheet');openDetail('${note.date}')">${t('viewFullJournal')}</button>
+  `;
+  openSheet('noteDetailSheet');
+}
+
+// ════════════════════════════════════════════════
+// CALENDAR
+// ════════════════════════════════════════════════
+let calYear, calMonth, calSelected = null;
+let journalDates = new Set();
+
+// ════════════════════════════════════════════════
+// UNIFIED DOODLE SYSTEM
+// All doodles share the same visual language:
+// thin line, hand-drawn, simple, cute, low-saturation, no fill.
+// ════════════════════════════════════════════════
+const CLOUD_DOODLE = `<svg class="cal-cloud" viewBox="0 0 30 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16 C3 16 2 11 6 10 C5 6 10 4 13 7 C15 3 21 4 21 9 C25 8 28 12 25 16 Z"/></svg>`;
+
+async function initCalendar() {
+  const now = new Date();
+  calYear = now.getFullYear();
+  calMonth = now.getMonth();
+  const entries = await getAllEntries();
+  journalDates = new Set(entries.map(e=>e.date));
+}
+
+function calNav(dir) {
+  calMonth += dir;
+  if(calMonth<0){ calMonth=11; calYear--; }
+  if(calMonth>11){ calMonth=0; calYear++; }
+  renderCalendar();
+}
+
+function renderCalendar() {
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('calMonthYear').textContent = `${months[calMonth]} ${calYear}`;
+
+  // Convert Sunday-first (0=Sun) to Monday-first (0=Mon, 6=Sun)
+  const firstDayRaw = new Date(calYear, calMonth, 1).getDay();
+  const firstDay = firstDayRaw === 0 ? 6 : firstDayRaw - 1;
+  const daysInMonth = new Date(calYear, calMonth+1, 0).getDate();
+  const prevDays = new Date(calYear, calMonth, 0).getDate();
+  const today = todayStr();
+
+  let html = '';
+  // prev month padding
+  for(let i=firstDay-1; i>=0; i--) {
+    html += `<div class="cal-day other-month"><span class="cal-day-num">${prevDays-i}</span></div>`;
+  }
+  // current month
+  for(let d=1; d<=daysInMonth; d++) {
+    const ds = `${calYear}-${String(calMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isToday = ds===today;
+    const hasJ = journalDates.has(ds);
+    const isSel = ds===calSelected;
+    let cls = 'cal-day';
+    if(isToday) cls+=' today';
+    if(hasJ) cls+=' has-journal';
+    if(isSel) cls+=' selected';
+    const cloud = hasJ ? CLOUD_DOODLE : '';
+    html += `<div class="${cls}" onclick="selectCalDay('${ds}')"><span class="cal-day-num">${d}</span>${cloud}</div>`;
+  }
+  // next month padding
+  const totalCells = Math.ceil((firstDay+daysInMonth)/7)*7;
+  for(let d=1; d<=totalCells-(firstDay+daysInMonth); d++) {
+    html += `<div class="cal-day other-month"><span class="cal-day-num">${d}</span></div>`;
+  }
+
+  document.getElementById('calGrid').innerHTML = html;
+  renderCalDetail();
+}
+
+async function selectCalDay(ds) {
+  calSelected = ds;
+  renderCalendar();
+  renderCalDetail();
+}
+
+async function renderCalDetail() {
+  const det = document.getElementById('calDetail');
+  if(!calSelected) {
+    det.innerHTML = `<div class="cal-no-journal">
+      ${CLOUD_DOODLE.replace('class="cal-cloud"', 'class="cal-cloud" style="width:16px;height:12px;opacity:0.75"')}
+      <p>${t('selectADate')}</p><small>${t('tapADateToSee')}</small>
+    </div>`;
+    return;
+  }
+  det.innerHTML = `<div class="cal-detail-date">${formatDate(calSelected)}, ${formatWeekday(calSelected)}</div>`;
+  if(journalDates.has(calSelected)) {
+    det.innerHTML += `<p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px;">${t('journalOnDay')}</p>
+    <button class="view-journal-btn" onclick="openDetail('${calSelected}')">${t('viewJournal')}</button>`;
+  } else {
+    det.innerHTML += `<div class="cal-no-journal">
+      ${CLOUD_DOODLE.replace('class="cal-cloud"', 'class="cal-cloud" style="width:16px;height:12px;opacity:0.75"')}
+      <p>${t('noJournalYet')}</p>
+      <small>${t('nothingWrittenToday')}</small>
+    </div>`;
+  }
+}
+
+// ════════════════════════════════════════════════
+// JOURNAL DETAIL
+// ════════════════════════════════════════════════
+async function openDetail(date) {
+  const entry = await dbGet(date);
+  if(!entry) { showToast(t('journalNotFound')); return; }
+
+  document.getElementById('detailSheetTitle').textContent = formatDate(date);
+  document.getElementById('detailDeleteBtn').onclick = ()=>confirmDeleteEntry(date);
+
+  const tpl = getTemplate();
+  const enabledFields = tpl.fields.filter(f=>f.enabled).sort((a,b)=>a.order-b.order);
+  const coveredKeys = new Set(enabledFields.map(f=>f.id));
+  // 'finished' is an alias for 'finish'; never show it separately
+  const metaKeys = new Set(['date','createdAt','favorite','extra','finished']);
+
+  const section = (icon,label,text)=>{
+    if(!text) return '';
+    return `<div class="detail-section">
+      <div class="detail-section-header">
+        <span class="detail-section-icon">${icon}</span>
+        <span class="detail-section-label">${escHtml(label)}</span>
+      </div>
+      <div class="detail-section-text">${escHtml(text)}</div>
+    </div>`;
+  };
+  const listSection = (icon,label,items)=>{
+    if(!items||!items.length) return '';
+    return `<div class="detail-section">
+      <div class="detail-section-header">
+        <span class="detail-section-icon">${icon}</span>
+        <span class="detail-section-label">${escHtml(label)}</span>
+      </div>
+      <ul class="detail-section-list">${items.map(i=>`<li>${escHtml(i)}</li>`).join('')}</ul>
+    </div>`;
+  };
+
+  let html = `<div class="detail-date-row">
+    <div class="detail-date">${formatDate(date)}, ${formatWeekday(date)}</div>
+  </div>`;
+
+  // Subjects shown as pills regardless of template (read by id → always works)
+  const subjects = Array.isArray(entry.subjects) ? entry.subjects : [];
+  if(subjects.length) {
+    html += `<div class="detail-subjects">${subjects.map(s=>`<span class="detail-subject-pill">${escHtml(s)}</span>`).join('')}</div>`;
+  }
+  html += `<div class="detail-divider"></div>`;
+
+  // Render each enabled template field — DATA is read by field.id, LABEL comes from template
+  enabledFields.forEach(f => {
+    let val = entry[f.id];
+    if(f.id === 'finish' && (val===undefined || val==='')) val = entry.finished || '';
+    if(f.type === 'multiselect') {
+      const arr = Array.isArray(val) ? val : (val ? [val] : []);
+      html += listSection(fieldIcon(f.id), f.label, arr);
     } else {
-      comingList.appendChild(li);
+      html += section(fieldIcon(f.id), f.label, val);
     }
   });
-</script>
 
-</body>
+  // Additional: any data key not covered by the template
+  // (preserves history when fields are disabled/removed + accepts new Shortcut fields)
+  const extraObj = entry.extra || {};
+  const additionalEntries = [];
+  Object.entries(extraObj).forEach(([k,v])=> additionalEntries.push([k,v]));
+  Object.entries(entry).forEach(([k,v])=>{
+    if(metaKeys.has(k) || coveredKeys.has(k)) return;
+    additionalEntries.push([k,v]);
+  });
+
+  if(additionalEntries.length) {
+    const items = additionalEntries.map(([k,v])=>{
+      const label = (tpl.fields.find(ff=>ff.id===k)||{}).label || (k.charAt(0).toUpperCase()+k.slice(1));
+      const display = Array.isArray(v) ? v.join(', ') : String(v);
+      return `<div class="detail-additional-item"><b>${escHtml(label)}:</b> ${escHtml(display)}</div>`;
+    }).join('');
+    html += `<div class="detail-section">
+      <div class="detail-section-header">
+        <span class="detail-section-icon"><svg class="fi" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3 L13 6 L7 12 L4 12 L4 9 Z"/><line x1="4" y1="9" x2="7" y2="12"/></svg></span>
+        <span class="detail-section-label">${t("additional")}</span>
+      </div>
+      <div class="detail-additional">${items}</div>
+    </div>`;
+  }
+
+  document.getElementById('detailSheetBody').innerHTML = html;
+  openSheet('detailSheet');
+}
+
+async function confirmDeleteEntry(date) {
+  if(!confirm(t('deleteJournalConfirm')+' '+formatDate(date)+'?')) return;
+  await dbDelete(date);
+  journalDates.delete(date);
+  closeSheet('detailSheet');
+  renderHome();
+  showToast(t('journalDeleted'));
+}
+
+// ════════════════════════════════════════════════
+// SHEET MANAGEMENT
+// ════════════════════════════════════════════════
+function openSheet(id) {
+  document.getElementById(id).classList.add('active');
+}
+
+function closeSheet(id) {
+  document.getElementById(id).classList.remove('active');
+}
+
+// Click outside sheet to close
+document.querySelectorAll('.sheet-overlay').forEach(overlay => {
+  overlay.addEventListener('click', e => {
+    if(e.target === overlay) closeSheet(overlay.id);
+  });
+});
+
+// ════════════════════════════════════════════════
+// NEW JOURNAL (template-driven)
+// ════════════════════════════════════════════════
+function openNewJournal() {
+  newJournalData = {};
+  const fields = getEnabledFields();
+  document.getElementById('njFieldsContainer').innerHTML = fields.map(f=>buildFormField(f)).join('');
+  // init multiselect tag arrays
+  fields.filter(f=>f.type==='multiselect').forEach(f=>{ newJournalData[f.id] = []; });
+  openSheet('newJournalSheet');
+}
+
+function addMultiTag(fieldId) {
+  const input = document.querySelector(`.nj-ms-input[data-field="${fieldId}"]`);
+  if(!input) return;
+  const val = input.value.trim();
+  if(!val) return;
+  if(!newJournalData[fieldId]) newJournalData[fieldId] = [];
+  newJournalData[fieldId].push(val);
+  input.value = '';
+  renderMultiTags(fieldId);
+}
+
+function removeMultiTag(fieldId, i) {
+  if(!newJournalData[fieldId]) return;
+  newJournalData[fieldId].splice(i, 1);
+  renderMultiTags(fieldId);
+}
+
+function renderMultiTags(fieldId) {
+  const wrap = document.getElementById('nj-tags-' + fieldId);
+  if(!wrap) return;
+  wrap.innerHTML = (newJournalData[fieldId]||[]).map((s,i)=>
+    `<span class="subject-tag">${escHtml(s)}<button onclick="removeMultiTag('${fieldId}',${i})">×</button></span>`
+  ).join('');
+}
+
+async function saveNewJournal() {
+  const fields = getEnabledFields();
+  // Start from any existing entry for today so fields NOT in the form are preserved
+  const existing = await dbGet(todayStr());
+  const entry = existing ? {...existing} : {};
+  entry.date = todayStr();
+  if(!entry.createdAt) entry.createdAt = new Date().toISOString();
+
+  let hasContent = false;
+  fields.forEach(f => {
+    if(f.type === 'multiselect') {
+      entry[f.id] = [...(newJournalData[f.id]||[])];
+      if(entry[f.id].length) hasContent = true;
+    } else {
+      const el = document.querySelector(`.nj-field[data-field="${f.id}"]`);
+      const val = el ? el.value.trim() : '';
+      entry[f.id] = val;
+      if(val) hasContent = true;
+    }
+  });
+
+  if(!hasContent) { showToast('Write something first'); return; }
+
+  await dbPut(entry);
+  journalDates.add(entry.date);
+  closeSheet('newJournalSheet');
+  await renderHome();
+  showQuote(entry.date);
+  showToast('Journal saved');
+}
+
+// ════════════════════════════════════════════════
+// SEARCH
+// ════════════════════════════════════════════════
+function openSearch() {
+  document.getElementById('searchOverlay').classList.add('active');
+  setTimeout(()=>document.getElementById('searchInput').focus(),100);
+}
+
+function closeSearch() {
+  document.getElementById('searchOverlay').classList.remove('active');
+  document.getElementById('searchInput').value='';
+  document.getElementById('searchResults').innerHTML='<div class="search-empty">'+t('startTyping')+'</div>';
+}
+
+function closeSearchIfBg(e) {
+  if(e.target===document.getElementById('searchOverlay')) closeSearch();
+}
+
+async function doSearch(q) {
+  const res = document.getElementById('searchResults');
+  if(!q.trim()){ res.innerHTML='<div class="search-empty">'+t('startTyping')+'</div>'; return; }
+  const entries = await getAllEntries();
+  const ql = q.toLowerCase();
+  const matches = entries.filter(e=>{
+    const blob = JSON.stringify(e).toLowerCase();
+    return blob.includes(ql);
+  });
+  if(!matches.length){ res.innerHTML='<div class="search-empty">No results found</div>'; return; }
+  res.innerHTML = matches.sort((a,b)=>b.date.localeCompare(a.date)).map(e=>{
+    const text = e.finish||e.finished||e.gratitude||e.work||'';
+    return `<div class="search-result-item" onclick="closeSearch();openDetail('${e.date}')">
+      <div class="search-result-date">${formatDate(e.date)} · ${formatWeekday(e.date)}</div>
+      <div class="search-result-text">${escHtml(text.slice(0,80))}${text.length>80?'…':''}</div>
+    </div>`;
+  }).join('');
+}
+
+// ════════════════════════════════════════════════
+// QUOTE POPUP
+// ════════════════════════════════════════════════
+function showQuote(dateStr) {
+  const LS_QUOTE_KEY = 'dj_quote_shown';
+  try {
+    const shown = JSON.parse(localStorage.getItem(LS_QUOTE_KEY)||'{}');
+    if(shown[dateStr]) return;
+    shown[dateStr] = true;
+    localStorage.setItem(LS_QUOTE_KEY, JSON.stringify(shown));
+  } catch {}
+
+  // Pick deterministic quote for the day
+  let h = 0; for(let c of dateStr) h=(h*31+c.charCodeAt(0))&0xFFFFFF;
+  const quote = QUOTE_POOL[h%QUOTE_POOL.length];
+  document.getElementById('quoteText').textContent = quote;
+
+  const popup = document.getElementById('quotePopup');
+  popup.classList.add('show');
+  setTimeout(()=>popup.classList.remove('show'), 4500);
+}
+
+function closeQuote() {
+  document.getElementById('quotePopup').classList.remove('show');
+}
+
+// ════════════════════════════════════════════════
+// SETTINGS
+// ════════════════════════════════════════════════
+function setTheme(theme) {
+  document.body.setAttribute('data-theme', theme);
+  localStorage.setItem('dj_theme', theme);
+  ['system','light','dark'].forEach(t=>{
+    const el = document.getElementById('check-'+t);
+    if(el) el.style.display = t===theme?'':'none';
+  });
+  const val = document.getElementById('appearanceValue');
+  if(val){ val.setAttribute('data-i18n', theme); val.textContent = t(theme); }
+}
+
+function loadTheme() {
+  const saved = localStorage.getItem('dj_theme') || 'system';
+  setTheme(saved);
+}
+
+function openAppearance() {
+  openSheet('appearanceSheet');
+}
+
+function openAbout() {
+  showToast('Daily Journal · Version 1.0.0 · Local Only');
+}
+
+async function exportJournals() {
+  const entries = await getAllEntries();
+  const blob = new Blob([JSON.stringify(entries,null,2)],{type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href=url; a.download=`daily-journal-export-${todayStr()}.json`;
+  a.click(); URL.revokeObjectURL(url);
+  showToast(t('exported'));
+}
+
+function importJournals() {
+  document.getElementById('importFileInput').click();
+}
+
+async function handleImport(e) {
+  const file = e.target.files[0];
+  if(!file) return;
+  try {
+    const text = await file.text();
+    const data = JSON.parse(text);
+    const entries = Array.isArray(data)?data:[data];
+    for(const entry of entries) {
+      if(entry.date) await dbPut(entry);
+    }
+    await initCalendar();
+    await renderHome();
+    showToast(t('imported') + ' · ' + entries.length);
+  } catch {
+    showToast('Import failed — invalid file');
+  }
+  e.target.value='';
+}
+
+function confirmClear() {
+  document.getElementById('confirmOverlay').classList.add('active');
+}
+
+function closeConfirm() {
+  document.getElementById('confirmOverlay').classList.remove('active');
+}
+
+async function clearAllData() {
+  await dbClear();
+  journalDates.clear();
+  closeConfirm();
+  renderHome();
+  showToast(t('allDataCleared'));
+}
+
+function showSchema() {
+  openSheet('schemaSheet');
+}
+
+function copySchema() {
+  const schema = `{
+  "date": "2026-08-11",
+  "createdAt": "2026-08-11T20:00:00",
+  "work": "...",
+  "status": "...",
+  "finish": "...",
+  "subjects": ["English", "Chinese"],
+  "gratitude": "...",
+  "release": "...",
+  "manifest": "...",
+  "extra": {
+    "mood": "...",
+    "sleep": "...",
+    "exercise": "..."
+  }
+}`;
+  navigator.clipboard.writeText(schema).then(()=>showToast(t('schemaCopied'))).catch(()=>showToast(t('copyFailed')));
+}
+
+// ════════════════════════════════════════════════
+// REVIEW TEMPLATE EDITOR
+// ════════════════════════════════════════════════
+let tplWorking = null;    // working copy (committed on Done)
+let feEditingId = null;   // field id being edited
+let feIsNew = false;
+let feSelectedType = 'text';
+
+function updateTplFieldCount() {
+  const el = document.getElementById('tplFieldCount');
+  if(el) {
+    const n = getTemplate().fields.filter(f=>f.enabled).length;
+    el.textContent = n + ' field' + (n===1?'':'s');
+  }
+}
+
+function openTemplateEditor() {
+  tplWorking = JSON.parse(JSON.stringify(getTemplate()));
+  renderTplName();
+  renderTplFields();
+  renderTplPreview();
+  renderDetectedFields();
+  openSheet('templateSheet');
+}
+
+function renderTplName() {
+  const el = document.getElementById('tplNameDisplay');
+  if(el) el.textContent = tplWorking.name || 'Daily Review';
+}
+
+function renderTplFields() {
+  const fields = [...tplWorking.fields].sort((a,b)=>a.order-b.order);
+  document.getElementById('tplFieldsList').innerHTML = fields.map(f => `
+    <div class="settings-row tpl-field-row" onclick="openEditField('${f.id}')">
+      <div class="tpl-drag-handle">
+        <button class="tpl-move-btn" onclick="event.stopPropagation();moveField('${f.id}',-1)">▲</button>
+        <button class="tpl-move-btn" onclick="event.stopPropagation();moveField('${f.id}',1)">▼</button>
+      </div>
+      <div class="settings-row-content">
+        <div class="settings-row-label" style="${f.enabled?'':'opacity:0.4;'}">${escHtml(f.label)}</div>
+        <div class="settings-row-sub">${fieldTypeLabel(f.type)}</div>
+      </div>
+      <div class="settings-row-right">
+        <div class="tpl-toggle ${f.enabled?'on':''}" onclick="event.stopPropagation();toggleField('${f.id}')"><div class="tpl-toggle-knob"></div></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderTplPreview() {
+  const fields = tplWorking.fields.filter(f=>f.enabled).sort((a,b)=>a.order-b.order);
+  const wrap = document.getElementById('tplPreview');
+  if(!fields.length) { wrap.innerHTML = '<div class="empty-sub">'+t('noFieldsEnabled')+'</div>'; return; }
+  wrap.innerHTML = `<div class="tpl-preview-title">${escHtml(tplWorking.name||'Daily Review')}</div>` +
+    fields.map(f => {
+      if(f.type === 'multiselect') {
+        return `<div class="tpl-preview-field">
+          <div class="tpl-preview-label">${fieldIcon(f.id)} ${escHtml(f.label)}</div>
+          <div class="tpl-preview-pills"><span class="tpl-preview-pill">tag</span><span class="tpl-preview-pill">tag</span></div>
+        </div>`;
+      }
+      return `<div class="tpl-preview-field">
+        <div class="tpl-preview-label">${fieldIcon(f.id)} ${escHtml(f.label)}</div>
+        <div class="tpl-preview-input">${escHtml(f.placeholder||'…')}</div>
+      </div>`;
+    }).join('');
+}
+
+async function renderDetectedFields() {
+  const entries = await getAllEntries();
+  const tplIds = new Set(tplWorking.fields.map(f=>f.id));
+  const metaKeys = new Set(['date','createdAt','favorite','extra','subjects','finished']);
+  const detected = new Set();
+  entries.forEach(e => {
+    Object.keys(e).forEach(k => { if(!metaKeys.has(k) && !tplIds.has(k)) detected.add(k); });
+    if(e.extra) Object.keys(e.extra).forEach(k=>{ if(!tplIds.has(k)) detected.add(k); });
+  });
+  const wrap = document.getElementById('tplDetectedWrap');
+  if(!detected.size) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  document.getElementById('tplDetectedList').innerHTML = [...detected].map(k => `
+    <div class="settings-row" onclick="addFieldFromDetected('${escHtml(k)}')">
+      <div class="settings-row-content">
+        <div class="settings-row-label" style="text-transform:capitalize">${escHtml(k)}</div>
+        <div class="settings-row-sub">${t('newFieldDetected')}</div>
+      </div>
+      <div class="settings-row-right"><span style="color:var(--system-blue);font-size:13px;font-weight:600;">Add</span></div>
+    </div>
+  `).join('');
+}
+
+function toggleField(id) {
+  const f = tplWorking.fields.find(x=>x.id===id);
+  if(f) { f.enabled = !f.enabled; renderTplFields(); renderTplPreview(); }
+}
+
+function moveField(id, dir) {
+  const fields = [...tplWorking.fields].sort((a,b)=>a.order-b.order);
+  const idx = fields.findIndex(f=>f.id===id);
+  const ni = idx + dir;
+  if(ni<0 || ni>=fields.length) return;
+  const tmp = fields[idx]; fields[idx] = fields[ni]; fields[ni] = tmp;
+  fields.forEach((f,i)=> f.order = i);
+  renderTplFields();
+  renderTplPreview();
+}
+
+function editTemplateName() {
+  const name = prompt('Template name', tplWorking.name || 'Daily Review');
+  if(name && name.trim()) { tplWorking.name = name.trim(); renderTplName(); renderTplPreview(); }
+}
+
+// ── Add / Edit field ──
+function openAddField() {
+  feIsNew = true; feEditingId = null;
+  document.getElementById('fieldEditorTitle').textContent = 'Add Field';
+  document.getElementById('feName').value = '';
+  document.getElementById('fePlaceholder').value = '';
+  feSelectedType = 'text';
+  renderFeTypes();
+  document.getElementById('feDeleteWrap').style.display = 'none';
+  openSheet('fieldEditorSheet');
+  setTimeout(()=>document.getElementById('feName').focus(), 320);
+}
+
+function openEditField(id) {
+  feIsNew = false; feEditingId = id;
+  const f = tplWorking.fields.find(x=>x.id===id);
+  if(!f) return;
+  document.getElementById('fieldEditorTitle').textContent = 'Edit Field';
+  document.getElementById('feName').value = f.label;
+  document.getElementById('fePlaceholder').value = f.placeholder || '';
+  feSelectedType = f.type;
+  renderFeTypes();
+  document.getElementById('feDeleteWrap').style.display = '';
+  openSheet('fieldEditorSheet');
+}
+
+function renderFeTypes() {
+  const te = document.getElementById('fieldEditorTitle');
+  if(te) te.textContent = feIsNew ? t('addField') : t('editField');
+  document.getElementById('feTypeGroup').innerHTML = FIELD_TYPES.map(tp => `
+    <div class="settings-row" onclick="selectFieldType('${tp.value}')">
+      <div class="settings-row-content"><div class="settings-row-label">${fieldTypeLabel(tp.value)}</div></div>
+      <div class="settings-row-right"><span class="check-mark" style="${feSelectedType===tp.value?'':'display:none'}">✓</span></div>
+    </div>
+  `).join('');
+}
+
+function selectFieldType(t) { feSelectedType = t; renderFeTypes(); }
+
+function saveField() {
+  const name = document.getElementById('feName').value.trim();
+  if(!name) { showToast('Enter a field name'); return; }
+  const placeholder = document.getElementById('fePlaceholder').value.trim();
+  const type = feSelectedType;
+  if(feIsNew) {
+    let id = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+    if(!id) id = 'field' + Date.now();
+    let base = id, n = 2;
+    while(tplWorking.fields.some(f=>f.id===id)) id = base + (n++);
+    tplWorking.fields.push({ id, label:name, type, enabled:true, order:tplWorking.fields.length, placeholder });
+  } else {
+    const f = tplWorking.fields.find(x=>x.id===feEditingId);
+    if(f) { f.label = name; f.placeholder = placeholder; f.type = type; }
+  }
+  closeFieldEditor();
+  renderTplFields();
+  renderTplPreview();
+  renderDetectedFields();
+}
+
+function deleteField() {
+  if(!feEditingId) return;
+  if(!confirm(t('deleteFieldConfirm'))) return;
+  tplWorking.fields = tplWorking.fields.filter(f=>f.id!==feEditingId);
+  tplWorking.fields.forEach((f,i)=> f.order = i);
+  closeFieldEditor();
+  renderTplFields();
+  renderTplPreview();
+  renderDetectedFields();
+}
+
+function closeFieldEditor() { closeSheet('fieldEditorSheet'); }
+
+function addFieldFromDetected(key) {
+  const label = key.charAt(0).toUpperCase() + key.slice(1);
+  tplWorking.fields.push({ id:key, label, type:'text', enabled:true, order:tplWorking.fields.length, placeholder:'' });
+  renderTplFields();
+  renderTplPreview();
+  renderDetectedFields();
+  showToast('Added ' + label);
+}
+
+function saveTemplateAndClose() {
+  saveTemplate(tplWorking);
+  closeSheet('templateSheet');
+  updateTplFieldCount();
+  showToast('Template saved ✓');
+}
+
+// ════════════════════════════════════════════════
+// DATA LAYER
+// ════════════════════════════════════════════════
+async function getAllEntries() {
+  try {
+    if(db) return await dbGetAll();
+  } catch {}
+  return lsGetAll();
+}
+
+// ════════════════════════════════════════════════
+// SHORTCUT URL IMPORT
+// ════════════════════════════════════════════════
+async function handleURLEntry() {
+  const params = new URLSearchParams(window.location.search);
+  const entryParam = params.get('entry');
+  if(!entryParam) return false;
+
+  try {
+    const entry = JSON.parse(decodeURIComponent(entryParam));
+    if(!entry.date) entry.date = todayStr();
+    if(!entry.createdAt) entry.createdAt = new Date().toISOString();
+
+    // Handle flat subjects that might be comma-separated string
+    if(typeof entry.subjects === 'string') {
+      entry.subjects = entry.subjects.split(',').map(s=>s.trim()).filter(Boolean);
+    }
+
+    // Save
+    await dbPut(entry);
+    journalDates.add(entry.date);
+
+    // Clean URL
+    const cleanUrl = window.location.pathname;
+    window.history.replaceState({}, '', cleanUrl);
+
+    await renderHome();
+    showQuote(entry.date);
+    showToast('Journal saved');
+    return true;
+  } catch(err) {
+    console.error('URL import error:', err);
+    return false;
+  }
+}
+
+// ════════════════════════════════════════════════
+// UTILS
+// ════════════════════════════════════════════════
+function escHtml(str) {
+  if(!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ════════════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════════════
+async function init() {
+  try { await openDB(); } catch(e) { console.warn('IndexedDB unavailable, using localStorage'); }
+
+  loadTheme();
+  loadLang();
+  initHeader();
+  updateTplFieldCount();
+
+  // Seed demo data if empty (for first-time experience)
+  const existing = await getAllEntries();
+  if(existing.length === 0) {
+    const demoEntries = [
+      {
+        date: todayStr(),
+        createdAt: new Date().toISOString(),
+        work: '完成了英语阅读和资料整理。',
+        status: '今天状态良好，专注且高效。',
+        finish: '完成了英语阅读和资料整理，学了很多新知识，感觉很充实满足。今天的计划都完成得很好！',
+        subjects: ['English','Chinese'],
+        gratitude: '感谢今天的自己坚持学习。',
+        release: '释放焦虑感和压力。',
+        manifest: '我正在成为更好的自己。',
+      },
+      {
+        date: (() => { const d=new Date(); d.setDate(d.getDate()-1); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; })(),
+        createdAt: new Date(Date.now()-86400000).toISOString(),
+        work: '今天复习了政治笔记，练习了英语听力。',
+        status: '效率很高，心情也挺好的。',
+        finish: '今天复习了政治笔记，复习了英语听力，效率很高，心情也挺好，继续加油！',
+        subjects: ['Politics','English'],
+        gratitude: '感谢今天高效的学习状态。',
+        release: '放下对结果的担忧。',
+        manifest: '每一步都在靠近目标。',
+      },
+      {
+        date: (() => { const d=new Date(); d.setDate(d.getDate()-2); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; })(),
+        createdAt: new Date(Date.now()-172800000).toISOString(),
+        work: '做了数学练习和英语写作练习。',
+        status: '进步一点点，开心！',
+        finish: '完成了数学学习和英语写作练习，进步一点点，开心！',
+        subjects: ['English','Math'],
+        gratitude: '感谢自己的努力。',
+        release: '放下完美主义。',
+        manifest: '我值得所有美好的事情。',
+      },
+    ];
+    for(const e of demoEntries) await dbPut(e);
+    journalDates = new Set(demoEntries.map(e=>e.date));
+  } else {
+    journalDates = new Set(existing.map(e=>e.date));
+  }
+
+  // Handle URL import
+  await handleURLEntry();
+
+  // Render
+  await renderHome();
+  await initCalendar();
+}
+
+init();
+</script>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a296ecf1da2d2d36',t:'MTc4NjQ0ODAwNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
