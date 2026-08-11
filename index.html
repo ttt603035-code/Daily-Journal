@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Study Resources</title>
+  <style>
+    /* ============================================================
+       CSS Variables — Light / Dark Mode
+       ============================================================ */
+    :root {
+      --bg-primary:        #F2F2F7;
+      --bg-secondary:      #FFFFFF;
+      --bg-tertiary:       #F2F2F7;
+      --bg-grouped:        #FFFFFF;
+
+      --label-primary:     #000000;
+      --label-secondary:   #3C3C43CC;   /* 80% opacity */
+      --label-tertiary:    #3C3C4399;   /* 60% opacity */
+      --label-quaternary:  #3C3C4366;   /* 40% opacity */
+
+      --separator:         #C6C6C8;
+      --fill-quaternary:   #7474801E;
+
+      --tint:              #007AFF;
+      --tint-light:        #007AFF1A;
+
+      --card-shadow:       0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+      --card-shadow-press: 0 0px 1px rgba(0,0,0,.06);
+
+      --radius-card:       13px;
+      --radius-icon:       10px;
+
+      --font: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+      --font-display: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-primary:      #000000;
+        --bg-secondary:    #1C1C1E;
+        --bg-tertiary:     #2C2C2E;
+        --bg-grouped:      #1C1C1E;
+
+        --label-primary:   #FFFFFF;
+        --label-secondary: #EBEBF599;
+        --label-tertiary:  #EBEBF54D;
+        --label-quaternary:#EBEBF52E;
+
+        --separator:       #38383A;
+        --fill-quaternary: #7474801E;
+
+        --tint:            #0A84FF;
+        --tint-light:      #0A84FF1A;
+
+        --card-shadow:     0 1px 3px rgba(0,0,0,.4), 0 1px 2px rgba(0,0,0,.3);
+        --card-shadow-press: 0 0px 1px rgba(0,0,0,.3);
+      }
+    }
+
+    /* ============================================================
+       Reset & Base
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background-color: var(--bg-primary);
+      color: var(--label-primary);
+      font-family: var(--font);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      min-height: 100dvh;
+      background-color: var(--bg-primary);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    /* ============================================================
+       Layout
+       ============================================================ */
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* ============================================================
+       Header
+       ============================================================ */
+    .header {
+      padding: 56px 4px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .header-icon {
+      font-size: 44px;
+      line-height: 1;
+      margin-bottom: 8px;
+      user-select: none;
+    }
+
+    .header-title {
+      font-family: var(--font-display);
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--label-primary);
+      line-height: 1.12;
+    }
+
+    .header-subtitle {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--label-secondary);
+      letter-spacing: -0.1px;
+      line-height: 1.4;
+    }
+
+    /* ============================================================
+       Section Label
+       ============================================================ */
+    .section-label {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--label-tertiary);
+      padding: 0 4px;
+      margin-bottom: 8px;
+    }
+
+    /* ============================================================
+       Card List — grouped iOS style
+       ============================================================ */
+    .card-list {
+      list-style: none;
+      background: var(--bg-grouped);
+      border-radius: var(--radius-card);
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      margin-bottom: 36px;
+    }
+
+    /* ============================================================
+       Card Item
+       ============================================================ */
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 13px 16px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+      background: transparent;
+      border: none;
+      width: 100%;
+      text-align: left;
+      transition: background-color 0.15s ease;
+    }
+
+    /* Separator between cards (not last) */
+    .card:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: calc(16px + 44px + 14px); /* align after icon */
+      right: 0;
+      height: 0.5px;
+      background: var(--separator);
+    }
+
+    /* Hover — desktop */
+    @media (hover: hover) {
+      .card:hover {
+        background-color: var(--fill-quaternary);
+      }
+    }
+
+    /* Active / press */
+    .card:active {
+      background-color: var(--fill-quaternary);
+      transform: scale(0.99);
+      transition: transform 0.08s ease, background-color 0.08s ease;
+    }
+
+    /* Coming-soon card */
+    .card.coming-soon {
+      cursor: default;
+      opacity: 0.42;
+    }
+    .card.coming-soon:active { transform: none; }
+
+    /* ============================================================
+       Card Icon
+       ============================================================ */
+    .card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-icon);
+      background: var(--tint-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    /* ============================================================
+       Card Text
+       ============================================================ */
+    .card-text {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 590;
+      letter-spacing: -0.2px;
+      color: var(--label-primary);
+      line-height: 1.25;
+    }
+
+    .card-subtitle {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--label-secondary);
+      letter-spacing: -0.05px;
+      line-height: 1.3;
+    }
+
+    /* ============================================================
+       Card Meta (progress / recent) — right side before chevron
+       ============================================================ */
+    .card-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .card-progress {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--tint);
+      letter-spacing: -0.1px;
+    }
+
+    .card-recent {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--label-tertiary);
+      white-space: nowrap;
+    }
+
+    /* ============================================================
+       Chevron
+       ============================================================ */
+    .card-chevron {
+      flex-shrink: 0;
+      width: 8px;
+      height: 14px;
+      margin-left: 4px;
+      opacity: 0.28;
+      fill: none;
+      stroke: var(--label-primary);
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ============================================================
+       Footer
+       ============================================================ */
+    .footer {
+      text-align: center;
+      padding: 12px 0 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .footer-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--label-tertiary);
+      letter-spacing: -0.05px;
+    }
+
+    .footer-version {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--label-quaternary);
+    }
+
+    /* ============================================================
+       Reduced-motion
+       ============================================================ */
+    @media (prefers-reduced-motion: reduce) {
+      .card { transition: none; }
+      .card:active { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ===================== Header ===================== -->
+  <header class="header">
+    <div class="header-icon">📚</div>
+    <h1 class="header-title">Study Resources</h1>
+    <p class="header-subtitle">Choose a subject to continue learning.</p>
+  </header>
+
+  <!-- ===================== Card List =====================
+       To add a new card, add a new object to the `resources`
+       array in the <script> section below. That's it.
+  ====================================================== -->
+  <p class="section-label">Active</p>
+  <ul class="card-list" id="active-list" role="list"></ul>
+
+  <p class="section-label">Coming Soon</p>
+  <ul class="card-list" id="coming-list" role="list"></ul>
+
+  <!-- ===================== Footer ===================== -->
+  <footer class="footer">
+    <span class="footer-name">Study Resources</span>
+    <span class="footer-version">v1.0</span>
+  </footer>
+
+</div>
+
+<!-- ============================================================
+     Data — add / edit cards here only.
+     Fields:
+       title    — primary label
+       subtitle — secondary label
+       icon     — emoji icon
+       file     — target HTML file (null = coming soon)
+       progress — e.g. "12 / 18" or "75%" or "" for empty
+       recent   — e.g. "Just now" or "Yesterday" or ""
+     ============================================================ -->
+<script>
+  const resources = [
+    // ── Active ──────────────────────────────────────────────────
+    {
+      title:    "English Grammar",
+      subtitle: "Grammar Dashboard",
+      icon:     "🇬🇧",
+      file:     "grammar.html",
+      progress: "",
+      recent:   ""
+    },
+    {
+      title:    "Chinese Literature",
+      subtitle: "大学语文",
+      icon:     "📖",
+      file:     "chinese.html",
+      progress: "",
+      recent:   ""
+    },
+
+    // ── Coming Soon ──────────────────────────────────────────────
+    {
+      title:    "Reading",
+      subtitle: "Comprehension & Analysis",
+      icon:     "👁",
+      file:     null,
+      progress: "",
+      recent:   ""
+    },
+    {
+      title:    "Politics",
+      subtitle: "政治理论",
+      icon:     "🏛️",
+      file:     null,
+      progress: "",
+      recent:   ""
+    },
+    {
+      title:    "Vocabulary",
+      subtitle: "Word Bank",
+      icon:     "🔤",
+      file:     null,
+      progress: "",
+      recent:   ""
+    },
+    {
+      title:    "Translation",
+      subtitle: "EN ↔ ZH",
+      icon:     "🌐",
+      file:     null,
+      progress: "",
+      recent:   ""
+    },
+    {
+      title:    "Writing",
+      subtitle: "Essays & Composition",
+      icon:     "✍️",
+      file:     null,
+      progress: "",
+      recent:   ""
+    },
+    {
+      title:    "Quiz Hub",
+      subtitle: "Practice & Review",
+      icon:     "🧩",
+      file:     null,
+      progress: "",
+      recent:   ""
+    },
+    {
+      title:    "Weekly Planner",
+      subtitle: "Schedule & Goals",
+      icon:     "🗓️",
+      file:     null,
+      progress: "",
+      recent:   ""
+    }
+  ];
+
+  // ── Chevron SVG (inline, no CDN) ────────────────────────────
+  function chevronSVG() {
+    return `<svg class="card-chevron" viewBox="0 0 8 14" aria-hidden="true">
+      <polyline points="1,1 7,7 1,13"/>
+    </svg>`;
+  }
+
+  // ── Build one <li> card ──────────────────────────────────────
+  function buildCard(resource) {
+    const li = document.createElement("li");
+    li.setAttribute("role", "listitem");
+
+    const isActive = Boolean(resource.file);
+
+    if (isActive) {
+      // Clickable — use <a> for accessibility
+      li.innerHTML = `
+        <a class="card" href="${resource.file}" aria-label="${resource.title}">
+          <span class="card-icon" aria-hidden="true">${resource.icon}</span>
+          <span class="card-text">
+            <span class="card-title">${resource.title}</span>
+            <span class="card-subtitle">${resource.subtitle}</span>
+          </span>
+          <span class="card-meta">
+            ${resource.progress ? `<span class="card-progress">${resource.progress}</span>` : ""}
+            ${resource.recent   ? `<span class="card-recent">${resource.recent}</span>`     : ""}
+          </span>
+          ${chevronSVG()}
+        </a>`;
+    } else {
+      // Coming soon — not interactive
+      li.innerHTML = `
+        <div class="card coming-soon" aria-label="${resource.title} — coming soon" aria-disabled="true">
+          <span class="card-icon" aria-hidden="true">${resource.icon}</span>
+          <span class="card-text">
+            <span class="card-title">${resource.title}</span>
+            <span class="card-subtitle">${resource.subtitle}</span>
+          </span>
+          <span class="card-meta">
+            <span class="card-recent">Coming Soon</span>
+          </span>
+          ${chevronSVG()}
+        </div>`;
+    }
+
+    return li;
+  }
+
+  // ── Render ───────────────────────────────────────────────────
+  const activeList  = document.getElementById("active-list");
+  const comingList  = document.getElementById("coming-list");
+
+  resources.forEach(r => {
+    const li = buildCard(r);
+    if (r.file) {
+      activeList.appendChild(li);
+    } else {
+      comingList.appendChild(li);
+    }
+  });
+</script>
+
+</body>
+</html>
